@@ -3,7 +3,7 @@ title: "타입 정리"
 bodyClass: page-type-index
 ---
 
-<link rel="stylesheet" href="/type/type.css">
+<link rel="stylesheet" href="type.css">
 
 <div class="type-grid">
 
@@ -27,9 +27,9 @@ bodyClass: page-type-index
     <div class="type-name">패치워크 타입</div>
   </a>
 
-<a class="type-card" href="bo/">
-  <img src="/type/thumb_bo.png" alt="보들 타입" loading="lazy">
-  <div class="type-name">보들 타입</div>
-</a>
+  <a class="type-card" href="bo/">
+    <img src="thumb_bo.png" alt="보들 타입" loading="lazy">
+    <div class="type-name">보들 타입</div>
+  </a>
 
 </div>
