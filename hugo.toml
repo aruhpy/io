@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313/"
+baseURL = "https://aruhpy.github.io/io/"
 languageCode = "ko-kr"
 title = "나루"
 theme = "naru"
