@@ -1,0 +1,56 @@
+/* =========================================================
+   progress.css
+   - 진행상황(/status/) 전용 스타일
+   - 현재 레이아웃은 layout.css(공통)로 충분히 동작하며,
+     아래는 '진행상황 페이지를 예쁘게 만들 때' 쓸 수 있는 안전한 기본 세트.
+   - (기존 디자인을 건드리지 않도록, 해당 클래스가 있을 때만 적용)
+========================================================= */
+
+/* ✅ 권장: content/status/_index.md에 bodyClass를 추가하면 페이지 전용 스타일 관리가 쉬워요.
+   예) ---
+       title: "진행상황"
+       bodyClass: page-status
+       ---
+*/
+
+.page-status .status-wrap{
+  display: grid;
+  gap: 14px;
+}
+
+.page-status .status-card{
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  border: 1px solid rgba(255, 183, 213, .35);
+}
+
+.page-status .status-title{
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.page-status .status-meta{
+  font-size: 13px;
+  opacity: .75;
+  margin-bottom: 10px;
+}
+
+.page-status .status-list{
+  margin: 0;
+  padding-left: 18px;
+}
+
+.page-status .status-list li{
+  margin: 6px 0;
+}
+
+/* 모바일 미세 조정 */
+@media (max-width: 480px){
+  .page-status .status-card{
+    border-radius: 14px;
+    padding: 12px;
+  }
+}

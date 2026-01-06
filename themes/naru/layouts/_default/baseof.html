@@ -11,7 +11,7 @@
 
     <div class="banner-box">
   {{ if not .IsHome }}
-    <a href="{{ "" | relURL }}" class="back-home" aria-label="홈으로 돌아가기">
+    <a href="{{ "" | absURL }}" class="back-home" aria-label="홈으로 돌아가기">
       <img src="{{ "home.svg" | relURL }}" alt="홈으로" />
     </a>
   {{ end }}
