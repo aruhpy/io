@@ -10,46 +10,51 @@
   <body class="{{ with .Params.bodyClass }}{{ . }}{{ end }}">
 
     <div class="banner-box">
-      {{ if not .IsHome }}
-      <a href="{{ "/" | relURL }}" class="back-home" aria-label="홈으로 돌아가기">
-        <img src="{{ "home.svg" | relURL }}" alt="홈으로" />
-      </a>
-      {{ end }}
+  {{ if not .IsHome }}
+    <a href="{{ "" | relURL }}" class="back-home" aria-label="홈으로 돌아가기">
+      <img src="{{ "home.svg" | relURL }}" alt="홈으로" />
+    </a>
+  {{ end }}
 
-      <div class="frame-bg"></div>
+  <div class="frame-bg"></div>
 
-      <img
-        src="{{ "canvas_frame.svg" | relURL }}"
-        class="lace-frame"
-        alt="레이스 프레임"
-      />
+  <img
+    src="{{ "canvas_frame.svg" | relURL }}"
+    class="lace-frame"
+    alt="레이스 프레임"
+  />
 
-      <div class="banner-content {{ if .IsHome }}is-home{{ else }}is-page{{ end }}">
-        {{ block "main" . }}{{ end }}
-      </div>
-    </div>
+  <div class="banner-content {{ if .IsHome }}is-home{{ else }}is-page{{ end }}">
+    {{ block "main" . }}{{ end }}
+  </div>
+</div>
+
 <script>
   (function () {
-    // ✅ 이미지에 대해서만 우클릭 메뉴 차단
     document.addEventListener('contextmenu', function (e) {
       const img = e.target && e.target.closest && e.target.closest('img');
       if (img) e.preventDefault();
     }, { passive: false });
 
-    // ✅ iOS/모바일 길게 누르기(저장/복사 메뉴) 차단
-    // 길게누르기 시작되는 순간부터 막아야 안정적으로 먹음
     document.addEventListener('touchstart', function (e) {
       const img = e.target && e.target.closest && e.target.closest('img');
       if (!img) return;
+
+      // ✅ 레이스 프레임은 예외
+      if (img.classList.contains('lace-frame')) return;
+
+      // ✅ 링크/버튼 안 이미지는 예외 (메뉴/홈버튼 살아야 함)
+      if (img.closest('a, button')) return;
+
       e.preventDefault();
     }, { passive: false });
 
-    // ✅ 이미지 드래그(PC)도 최대한 방지
     document.addEventListener('dragstart', function (e) {
       const img = e.target && e.target.closest && e.target.closest('img');
       if (img) e.preventDefault();
     }, { passive: false });
   })();
 </script>
+
   </body>
 </html>
