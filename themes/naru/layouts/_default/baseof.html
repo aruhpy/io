@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ "style.css" | relURL }}" />
   </head>
 
-  <body class="{{ with .Params.bodyClass }}{{ . }}{{ end }}">
+ <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }} {{ with .Params.bodyClass }}{{ . }}{{ end }}">
 
     <div class="banner-box">
   {{ if not .IsHome }}
@@ -18,11 +18,20 @@
 
   <div class="frame-bg"></div>
 
-  <img
-    src="{{ "canvas_frame.svg" | relURL }}"
-    class="lace-frame"
-    alt="레이스 프레임"
-  />
+  <!-- PC 프레임 -->
+<img
+  src="{{ "canvas_frame.svg" | relURL }}"
+  class="lace-frame lace-frame--pc"
+  alt="레이스 프레임 (PC)"
+/>
+
+<!-- 모바일 프레임 (900x1650 픽셀 이미지) -->
+<img
+  src="{{ "mobile_frame.svg" | relURL }}"
+  class="lace-frame lace-frame--mobile"
+  alt="레이스 프레임 (모바일)"
+/>
+
 
   <div class="banner-content {{ if .IsHome }}is-home{{ else }}is-page{{ end }}">
     {{ block "main" . }}{{ end }}
