@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on 나루</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:1313/io/</link>
     <description>Recent content in Home on 나루</description>
     <generator>Hugo</generator>
     <language>ko-kr</language>
     <lastBuildDate>Tue, 09 Dec 2025 15:37:29 +0900</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Links</title>
-      <link>http://localhost:1313/links/</link>
+      <link>http://localhost:1313/io/links/</link>
       <pubDate>Tue, 09 Dec 2025 15:37:29 +0900</pubDate>
-      <guid>http://localhost:1313/links/</guid>
+      <guid>http://localhost:1313/io/links/</guid>
       <description></description>
     </item>
     <item>
       <title>Diary</title>
-      <link>http://localhost:1313/diary/</link>
+      <link>http://localhost:1313/io/diary/</link>
       <pubDate>Tue, 09 Dec 2025 15:37:25 +0900</pubDate>
-      <guid>http://localhost:1313/diary/</guid>
+      <guid>http://localhost:1313/io/diary/</guid>
       <description></description>
     </item>
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <link>http://localhost:1313/io/about/</link>
       <pubDate>Tue, 09 Dec 2025 00:00:00 +0900</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>http://localhost:1313/io/about/</guid>
       <description>&lt;p&gt;안녕하세요오&lt;/p&gt;</description>
     </item>
     <item>
       <title>몽글망글 타입</title>
-      <link>http://localhost:1313/type/mong/</link>
+      <link>http://localhost:1313/io/type/mong/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/type/mong/</guid>
+      <guid>http://localhost:1313/io/type/mong/</guid>
       <description>&lt;div class=&#34;type-style&#34;&gt;&#xD;&#xA;&lt;div class=&#34;pill-title&#34;&gt;💗 몽글망글 마감선&lt;/div&gt;&#xD;&#xA;&lt;ul class=&#34;pink-list&#34;&gt;&#xD;&#xA;  &lt;li&gt;&lt;span&gt;&lt;span class=&#34;bold&#34;&gt;위 + 아래 주민 (기본)&lt;/span&gt; : &lt;span class=&#34;pink&#34;&gt;1.5&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&#xD;&#xA;  &lt;li&gt;&lt;span&gt;&lt;span class=&#34;bold&#34;&gt;위 주민 + 아래 크리쳐&lt;/span&gt; 신청 시 &lt;span class=&#34;pink&#34;&gt;추금 + 0.5&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;div class=&#34;dot-divider&#34;&gt;&lt;/div&gt;&#xD;&#xA;&lt;div class=&#34;pill-title&#34;&gt;💗 신청 양식 (복붙 가능)&lt;/div&gt;&#xD;&#xA;&lt;ol class=&#34;form-list&#34;&gt;&#xD;&#xA;  &lt;li&gt;주민 사진 첨부 :&lt;/li&gt;&#xD;&#xA;  &lt;li&gt;배경 색상 :&lt;/li&gt;&#xD;&#xA;  &lt;li&gt;참고 사항 :&lt;/li&gt;&#xD;&#xA;&lt;/ol&gt;&#xD;&#xA;&lt;div class=&#34;notice-box&#34;&gt;&#xD;&#xA;  &lt;div class=&#34;notice-title&#34;&gt;중복 주민은 받지 않는 타입입니다!!&lt;/div&gt;&#xD;&#xA;  &lt;div class=&#34;notice-text&#34;&gt;&#xD;&#xA;    중복 불가 주민 목록은 주기적으로 업데이트하고 있으나, 업데이트가 다소 늦어질 수 있습니다.&lt;br&gt;&#xD;&#xA;    다만, 이전에 작업했던 주민은 대부분 기억하고 있으니 크게 걱정하지 않으셔도 됩니다! &amp;gt;_&amp;lt;&#xD;&#xA;  &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&lt;!-- /.type-style --&gt;</description>
     </item>
     <item>
       <title>무지개 구름 타입</title>
-      <link>http://localhost:1313/type/mu/</link>
+      <link>http://localhost:1313/io/type/mu/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/type/mu/</guid>
+      <guid>http://localhost:1313/io/type/mu/</guid>
       <description></description>
     </item>
     <item>
       <title>보들 타입</title>
-      <link>http://localhost:1313/type/bo/</link>
+      <link>http://localhost:1313/io/type/bo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/type/bo/</guid>
+      <guid>http://localhost:1313/io/type/bo/</guid>
       <description></description>
     </item>
     <item>
       <title>패치워크 타입</title>
-      <link>http://localhost:1313/type/pa/</link>
+      <link>http://localhost:1313/io/type/pa/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/type/pa/</guid>
+      <guid>http://localhost:1313/io/type/pa/</guid>
       <description></description>
     </item>
     <item>
       <title>핫듀핫듀 타입</title>
-      <link>http://localhost:1313/type/ha/</link>
+      <link>http://localhost:1313/io/type/ha/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/type/ha/</guid>
+      <guid>http://localhost:1313/io/type/ha/</guid>
       <description>&lt;div class=&#34;type-style&#34;&gt;&#xD;&#xA;&lt;div class=&#34;pill-title&#34;&gt;💗 핫듀핫듀 마감선&lt;/div&gt;&#xD;&#xA;&lt;ul class=&#34;pink-list&#34;&gt;&#xD;&#xA;  &lt;li&gt;&lt;span&gt;&lt;span class=&#34;bold&#34;&gt;위 + 아래 주민 (기본)&lt;/span&gt; : &lt;span class=&#34;pink&#34;&gt;1.5&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&#xD;&#xA;  &lt;li&gt;&lt;span&gt;&lt;span class=&#34;bold&#34;&gt;위 주민 + 아래 크리쳐&lt;/span&gt; 신청 시 &lt;span class=&#34;pink&#34;&gt;추금 + 0.5&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;div class=&#34;dot-divider&#34;&gt;&lt;/div&gt;&#xD;&#xA;&lt;ul class=&#34;pink-list&#34;&gt;&#xD;&#xA;  &lt;li&gt;&lt;span&gt;&lt;span class=&#34;pink&#34;&gt;감은 눈 / 맨몸 고정틀&lt;/span&gt; 입니다&lt;/span&gt;&lt;/li&gt;&#xD;&#xA;  &lt;li&gt;&lt;span&gt;주민 표현이 전반적으로 많이 &lt;span class=&#34;pink&#34;&gt;단순화&lt;/span&gt; 되는 타입입니다.&lt;/span&gt;&lt;/li&gt;&#xD;&#xA;  &lt;li&gt;&lt;span&gt;크리쳐의 경우 장식이 많거나 화려한 디자인은&lt;br&gt;작업이 거절되거나 표현이 크게 생략될 수 있습니다.&lt;/span&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;div class=&#34;dot-divider&#34;&gt;&lt;/div&gt;&#xD;&#xA;&lt;div class=&#34;pill-title&#34;&gt;💗 신청 양식 (복붙 가능)&lt;/div&gt;&#xD;&#xA;&lt;ol class=&#34;form-list&#34;&gt;&#xD;&#xA;  &lt;li&gt;주민 사진 첨부 :&lt;/li&gt;&#xD;&#xA;  &lt;li&gt;배경 색상 :&lt;/li&gt;&#xD;&#xA;  &lt;li&gt;참고 사항 :&lt;/li&gt;&#xD;&#xA;&lt;/ol&gt;&#xD;&#xA;&lt;div class=&#34;dot-divider&#34;&gt;&lt;/div&gt;&#xD;&#xA;&lt;div class=&#34;notice-box&#34;&gt;&#xD;&#xA;  &lt;div class=&#34;notice-title&#34;&gt;중복 주민은 받지 않는 타입입니다!!&lt;/div&gt;&#xD;&#xA;  &lt;div class=&#34;notice-text&#34;&gt;&#xD;&#xA;    중복 불가 주민 목록은 주기적으로 업데이트하고 있으나, 업데이트가 다소 늦어질 수 있습니다.&lt;br&gt;&#xD;&#xA;    다만, 이전에 작업했던 주민은 대부분 기억하고 있으니 크게 걱정하지 않으셔도 됩니다! &amp;gt;_&amp;lt;&lt;br&gt;&lt;br&gt;&#xD;&#xA;    혹시 제 실수로 누락되었거나 업데이트 지연으로 중복 신청이 확인될 경우,&lt;br&gt;&#xD;&#xA;    취소 또는 다른 타입으로 변경이 가능합니다.&#xD;&#xA;  &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div class=&#34;dot-divider&#34;&gt;&lt;/div&gt;&#xD;&#xA;&lt;div class=&#34;pill-title&#34;&gt;💗 불가 주민 목록&lt;/div&gt;&#xD;&#xA;&lt;div class=&#34;chip-wrap&#34;&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;바닐라&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;미미&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;서머&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;호랭이&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;카라멜&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;토시&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;글루민&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;다람&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;빙티&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;귀오미&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;시베리아&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;비앙카&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;크리스틴&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;미첼&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;리키&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;히죽&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;유네찌&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;쭈니&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;캐비어&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;베리&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;1호&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;곰비&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;닌토&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;캔디&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;프랑소와&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;마르&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;메이첼&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;로보&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;리처드&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;애플&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;젤리&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;가북희&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;스피카&lt;/span&gt;&#xD;&#xA;  &lt;span class=&#34;chip&#34;&gt;머피&lt;/span&gt;&lt;span class=&#34;chip&#34;&gt;백희&lt;/span&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;/div&gt;</description>
     </item>
   </channel>

@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Status on 나루</title>
-    <link>http://localhost:1313/status/</link>
+    <link>http://localhost:1313/io/status/</link>
     <description>Recent content in Status on 나루</description>
     <generator>Hugo</generator>
     <language>ko-kr</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:1313/status/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/io/status/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
