@@ -1,7 +1,10 @@
 /* =========================================================
    layout.css
-   - 프레임/전체 레이아웃/홈/공통 반응형
-   - (원본 style.css에서 레이아웃 관련만 분리)
+   - 프레임/전체 레이아웃/홈/공통 반응형 (GitHub Pages /io/ 호환)
+   - 정책:
+     PC: canvas_frame_v2.svg (lace-frame--pc)
+     Mobile: 홈(is-home)은 프레임 숨김, 그 외(is-page)는 mobile_frame.svg 사용
+   - 흰 배경(frame-bg) 완전 제거(없애기)
 ========================================================= */
 
 /* =========================
@@ -28,7 +31,7 @@ body {
 }
 
 /* =========================
-   2) 레이스 프레임 컨테이너
+   2) 프레임 컨테이너 (PC 기본)
 ========================= */
 .banner-box {
   position: relative;
@@ -38,22 +41,37 @@ body {
   margin: 0 auto;
 }
 
+/* ✅ 흰 배경(frame-bg) 제거 정책:
+   - baseof.html에 <div class="frame-bg"></div>가 남아있어도
+     아래에서 완전 미사용 처리(레이아웃 꼬임 방지)
+*/
 .frame-bg {
-  position: absolute;
-  inset: 2% 2% 2% 3%;
-  background-color: #ffffff;
-  border-radius: 16px;
-  z-index: 0;
+  display: none !important;
 }
 
+/* 프레임 이미지(PC/모바일 공통 클래스) */
 .lace-frame {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+
+  /* PC 프레임은 원래 fill로 써도 되지만,
+     모바일용 contain을 개별 클래스에서 적용할 거라 기본은 fill */
   object-fit: fill;
+
   pointer-events: none;
   z-index: 2;
+}
+
+/* PC/모바일 프레임 스위치 기본값 */
+.lace-frame--pc { display: block; }
+.lace-frame--mobile { display: none; }
+
+/* 모바일 프레임: 픽셀 느낌(지원되는 범위에서) */
+.lace-frame--mobile {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 /* =========================
@@ -61,27 +79,29 @@ body {
 ========================= */
 .banner-content {
   position: absolute;
+  width: 84%;
+  left: 50%;
+  transform: translateX(-50%);
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 84%;
-  z-index: 1;
+
+  /* ✅ 프레임 위로 올라오게 */
+  z-index: 3;
 }
 
-/* 홈 화면 중앙 정렬(PC 기본) */
+/* 홈 화면(PC 기본): 중앙 */
 .banner-content.is-home {
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
 }
 
-/* 페이지(공지/타입/진행/문의 등) 기본 */
+/* 페이지(공지/타입/진행 등) 기본 */
 .banner-content.is-page {
   top: 12%;
-  left: 50%;
-  transform: translateX(-50%);
   height: 72%;
   overflow: auto;
 }
@@ -135,274 +155,105 @@ body {
 }
 
 /* =========================
-   8) 홈 버튼(PC & 모바일 공통 기본)
+   6) 홈 버튼 (공통)
+   - 프레임 안 상단 중앙
 ========================= */
 a.back-home {
-  position: absolute !important;
-  top: 60px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 9999 !important;
-  display: block !important;
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: block;
 
-  background: transparent !important;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
 
-  width: auto !important;
-  height: auto !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  padding: 0;
+  margin: 0;
 
-  -webkit-tap-highlight-color: transparent !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a.back-home img {
-  width: 100px !important;
-  height: auto !important;
-  display: block !important;
-
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-
+  width: 100px;
+  height: auto;
+  display: block;
   image-rendering: pixelated;
 }
 
-a.back-home::before,
-a.back-home::after {
-  display: none !important;
-  content: "" !important;
-  background: transparent !important;
-}
-
 /* =========================================================
-   9) 모바일(480px 이하) : 홈 전용 레이아웃
-   - 홈에서 프레임 숨김
-   - 홈버튼은 프레임 밖 위에 고정
-   - 프레임은 아래로 살짝 내림
+   7) MOBILE (480px 이하)
+   요구사항:
+   - 모바일 홈(is-home): 프레임 숨김 유지
+   - 모바일 홈 제외(is-page): mobile_frame.svg 사용 + 900x1650 비율
+   - 홈버튼: 프레임 밖으로 빼지 않음(프레임 안)
 ========================================================= */
-@media (max-width: 480px){
+@media (max-width: 480px) {
 
-  /* 모바일 전체 padding 조정 */
-  body{
-    padding: 12px 20px !important;
-  }
+  /* 모바일 바디 여백 */
+  body { padding: 12px 20px; }
 
-  /* 홈버튼: 프레임 밖 상단 고정 */
-  a.back-home{
-    position: fixed !important;
-    top: 12px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    z-index: 9999 !important;
-  }
-
-  a.back-home img{
-    width: 120px !important;
-    max-width: none !important;
-  }
-
-  /* 프레임 전체를 아래로(홈버튼 공간 확보) */
-  .banner-box{
-    margin-top: 65px !important;
-  }
-
-  /* 홈: 중앙정렬 해제하고 위로 */
-  .banner-content.is-home{
-    position: absolute !important;
-    top: 10px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 100% !important;
-  }
-
-  /* 홈에서 프레임 숨김 */
-  .banner-box:has(.is-home) .frame-bg,
-  .banner-box:has(.is-home) .lace-frame{
+  /* ---------- (A) 모바일 홈: 프레임 숨김 유지 ---------- */
+  body.is-home .lace-frame--pc,
+  body.is-home .lace-frame--mobile {
     display: none !important;
   }
 
-  .banner-box:has(.is-home){
-    aspect-ratio: auto !important;
-    height: 80vh !important;
-  }
-
-  /* 홈 메뉴 간격 */
-  .banner-main-wrap{
-    margin-top: 40px !important;  /* 배너 살짝 아래로 */
-    margin-bottom: 10px !important;
-    width: 339px !important;
-    max-width: 90vw !important;
-    height: auto !important;
-  }
-
-  .menu-image-wrap{
-    margin-top: 8px !important;
-    gap: 10px !important;         /* 메뉴끼리 간격 */
-  }
-
-  .menu-image-wrap img{
-    width: 140px !important;
-  }
-}
-
-/* =========================================================
-   10) 모바일(480px 이하) : 페이지형(공지/타입/진행) 공통
-   - 가로 넘침 방지
-   - 글씨 작게
-   - 색상 진회색
-   - 프레임 안에서 넓게 사용
-========================================================= */
-@media (max-width: 480px){
-
-  /* 페이지형 전체 톤 */
-  .banner-content.is-page{
-    width: 84% !important;
-    max-width: 84% !important;
-    overflow-x: hidden !important;
-
-    font-size: 0.82em;
-    line-height: 1.35;
-    color: #444;
-
-    top: 7% !important;
-    height: 84% !important;
-
-    padding-right: 0 !important;
-  }
-
-  .banner-content.is-page .page-body{
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-    margin: 0 auto !important;
-  }
-
-  .banner-content.is-page img,
-  .banner-content.is-page svg,
-  .banner-content.is-page table{
-    max-width: 100% !important;
-    height: auto !important;
-  }
-
-  .banner-content.is-page pre,
-  .banner-content.is-page code{
-    max-width: 100% !important;
-    white-space: pre-wrap !important;
-    overflow-x: hidden !important;
-  }
-
-  /* 공지: 필독 네모(모바일) */
-  .notice-important{
-    width: 92% !important;
-    max-width: 92% !important;
-    margin: 0 auto 12px auto;
-    padding: 10px 12px;
-    line-height: 1.3;
-    font-size: 0.9em;
-  }
-
-  .notice-important p{
-    margin: 5px 0 !important;
-    line-height: 1.35 !important;
-  }
-
-  .notice-important strong,
-  .notice-important b{
-    display: block;
-    margin-bottom: 0;
-  }
-
-  /* 공지: 아코디언 */
-  .notice-accordion summary{
-    font-size: 0.9em;
-    padding: 10px 12px;
-  }
-
-  .notice-body{
-    font-size: 0.9em;
-    line-height: 1.35;
-  }
-
-  /* 공지 제목 핑크 라벨(모바일에서 살짝 더 작게) */
-  .notice-h2,
-  .notice-h3,
-  .tag-pink{
-    padding: 4px 8px !important;
-    border-radius: 5px !important;
-  }
-
-  /* 타입정리: 모바일 2열 */
-  .type-grid{
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
-  }
-
-  /* 타입정리 페이지는 더 위부터(프레임 꽉 차게) */
-  .banner-content.is-page:has(.type-grid){
-    top: 5% !important;
-    height: 87% !important;
-  }
-
-  .page-body:has(.type-grid){
-    padding-top: 0 !important;
-  }
-}
-
-/* =========================================================
-   모바일: 전체 스크롤(안 무너지는 버전)
-   - absolute 구조 유지
-   - 내부 overflow만 끄고, 높이를 auto로 풀기
-========================================================= */
-@media (max-width: 480px){
-
-  /* 프레임 박스는 화면 기준으로 늘어날 수 있게 */
-  .banner-box{
-    aspect-ratio: auto !important;
-    min-height: calc(100vh - 65px) !important;
-    height: auto !important;
-  }
-
-  /* 프레임(흰 배경/레이스)은 그대로(absolute 유지) */
-  .frame-bg{
-    inset: 65px 2% 12px 3% !important; /* 위 65px은 홈버튼 공간 */
-  }
-
-  .lace-frame{
-    top: 65px !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    height: auto !important;
-  }
-
-  /* ✅ 핵심: 내용은 absolute 유지하되, 내부 스크롤만 제거 */
-  .banner-content.is-page{
-    position: absolute !important;
-    top: 75px !important;          /* 프레임 시작 아래 */
+  body.is-home .banner-content.is-home {
+    top: 10px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-
-    height: auto !important;       /* 고정 높이 해제 */
-    max-height: none !important;
-    overflow: visible !important;  /* 내부 스크롤 제거 */
-
-    padding-right: 0 !important;
-    padding-bottom: 40px !important;
-
-    width: 84% !important;
-    z-index: 5 !important;
   }
 
-  /* 모바일에서 글 영역 폭은 프레임 안에 맞춤 */
-  .banner-content.is-page .page-body{
-    max-width: 100% !important;
+  body.is-home .banner-main-wrap {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    width: 339px;
+    max-width: 90vw;
+    height: auto;
+  }
+
+  body.is-home .menu-image-wrap {
+    margin-top: 8px;
+    gap: 10px;
+  }
+
+  /* ---------- (B) 모바일 페이지: mobile_frame 적용 ---------- */
+  body.is-page .lace-frame--pc {
+    display: none !important;
+  }
+
+  body.is-page .lace-frame--mobile {
+    display: block !important;
+
+    /* 모바일 프레임은 비율 유지가 중요 */
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* 모바일 페이지 프레임 비율 900x1650 */
+  body.is-page .banner-box {
+    max-width: 900px !important;
+    aspect-ratio: 900 / 1650 !important;
+    margin-top: 0 !important;
+  }
+
+  /* 페이지 콘텐츠 위치 */
+  body.is-page .banner-content.is-page {
+    top: 7% !important;
+    height: 84% !important;
+    overflow: auto !important;
+    width: 84% !important;
+  }
+
+  /* 홈버튼: 모바일에서도 프레임 안 상단 가운데 */
+  body.is-page a.back-home {
+    top: 22px !important;
   }
 }
+
+

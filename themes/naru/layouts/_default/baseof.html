@@ -11,26 +11,21 @@
 
     <div class="banner-box">
   {{ if not .IsHome }}
-    <a href="{{ "" | absURL }}" class="back-home" aria-label="홈으로 돌아가기">
-      <img src="{{ "home.svg" | relURL }}" alt="홈으로" />
-    </a>
+   <a href="{{ "/" | relURL }}" class="back-home" aria-label="홈으로 돌아가기">
+  <img src="{{ "home.svg" | relURL }}" alt="홈으로" />
+</a>
   {{ end }}
 
   <div class="frame-bg"></div>
 
-  <!-- PC 프레임 -->
-<img
-  src="{{ "canvas_frame.svg" | relURL }}"
-  class="lace-frame lace-frame--pc"
-  alt="레이스 프레임 (PC)"
-/>
+<img src="{{ "canvas_frame_v2.svg" | relURL }}"
+     class="lace-frame lace-frame--pc"
+     alt="레이스 프레임(PC)" />
 
-<!-- 모바일 프레임 (900x1650 픽셀 이미지) -->
-<img
-  src="{{ "mobile_frame.svg" | relURL }}"
-  class="lace-frame lace-frame--mobile"
-  alt="레이스 프레임 (모바일)"
-/>
+<img src="{{ "mobile_frame.svg" | relURL }}"
+     class="lace-frame lace-frame--mobile"
+     alt="레이스 프레임(모바일)" />
+
 
 
   <div class="banner-content {{ if .IsHome }}is-home{{ else }}is-page{{ end }}">
