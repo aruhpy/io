@@ -3,7 +3,6 @@ languageCode = "ko-kr"
 title = "나루"
 theme = "naru"
 
-relativeURLs = true
 canonifyURLs = false
 
 [markup]
