@@ -2,18 +2,19 @@
 title: 
 ---
 <div class="notice-important">
-  <strong>필독 안내</strong><br>
-   <span class="em-pink">아래 공지사항을 읽지 않아 발생하는 문제에 대해서는
-<span class="mobile-br"></span>
-책임지지 않습니다.
+  <strong>필독 안내</strong>
+  <p class="notice-important-text">
+    <span class="em-pink">
+      아래 공지사항을 읽지 않아 발생하는 문제에 대해서는<br class="mobile-br">
+      책임지지 않습니다.
+    </span>
+  </p>
 </div>
 
 
 <details class="notice-accordion">
   <summary>1. 공통 공지사항</summary>
   <div class="notice-body">
-
-  <h2 class="notice-h2"><span class="tag-pink">공통 공지사항 안내</span></h2>
 
   <h3 class="notice-h3"><span class="tag-pink">1. 마감 관련</span></h3>
   <ul class="notice-list">
