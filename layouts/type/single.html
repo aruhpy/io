@@ -1,0 +1,28 @@
+{{ define "main" }}
+<main class="type-main">
+
+  <!-- ✅ SAMPLE: 공지사항 같은 아코디언 -->
+  <details class="notice-accordion type-sample">
+    <summary>SAMPLE</summary>
+
+    {{ $imgs := .Resources.Match "img/*" }}
+    {{ if $imgs }}
+      <div class="type-gallery-grid">
+        {{ range sort $imgs "Name" "asc" }}
+          <a class="type-gallery-item" href="{{ .RelPermalink }}">
+            <img src="{{ .RelPermalink }}" alt="" loading="lazy">
+          </a>
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="notice-body">img 폴더에 이미지가 없어요!</div>
+    {{ end }}
+  </details>
+
+  <!-- ✅ 설명은 접지 않고 바로 노출 -->
+  <div class="page-body type-desc">
+    {{ .Content }}
+  </div>
+
+</main>
+{{ end }}

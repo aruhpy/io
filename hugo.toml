@@ -1,0 +1,9 @@
+baseURL = "http://localhost:1313/"
+languageCode = "ko-kr"
+title = "나루"
+theme = "naru"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
