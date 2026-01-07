@@ -5,8 +5,7 @@ title:
   <strong>필독 안내</strong>
   <p class="notice-important-text">
     <span class="em-pink">
-      아래 공지사항을 읽지 않아 발생하는 문제에 대해서는<br class="mobile-br">
-      책임지지 않습니다.
+      아래 공지사항을 읽지 않아 발생하는 문제에 대해서는 책임지지 않습니다.
     </span>
   </p>
 </div>
@@ -32,7 +31,7 @@ title:
     <li>머리장식</li>
     <li>안경</li>
   </ul>
-  <p class="notice-note">→ 추가금 범위: <strong>0.1 ~ 0.5</strong></p>
+  <p class="notice-note"><p class="em-pink">→ 추가금 범위: <strong>0.1 ~ 0.5</strong></p>
 
   <hr class="notice-hr">
 
@@ -81,7 +80,7 @@ title:
   <ul class="notice-list">
     <li><span class="em-pink">고어 / 19금 / 노인 / 근육질 남캐 X</span></li>
     <li>이외에도 작업자가 표현이 어렵다고 판단하는 경우 신청을 거절할 수 있습니다.</li>
-    <li>설명이 지나치게 길게 작성된 외관표나 텍스트로만 구성된 외관 설명은 받지 않습니다.</li>
+    <li>설명이 지나치게 길거나 텍스트로만 구성된 외관 설명은 받지 않습니다.</li>
     <li>머릿결/헤어 웨이브 표현은 작가 스타일에 따라 달라질 수 있으며, 참고 자료와 완전히 동일한 재현은 불가합니다. 해당 부분에 민감하신 경우 신청을 권장하지 않습니다.</li>
   </ul>
 
@@ -102,7 +101,7 @@ title:
     <li>점, 시스루, 근육, 문신</li>
     <li>
       도트 특성상 머릿결 및 헤어 악세사리 표현은
-      <span class="em-pink">단순화·생략되어 딱딱하게 표현</span>될 수 있으며,<br>
+      <span class="em-pink">단순화·생략</span>될 수 있으며,<br>
       참고 자료와 동일한 재현은 불가능합니다.
       <span class="muted"><br>해당 부분에 민감하신 경우 신청을 권장드리지 않습니다.</span>
     </li>

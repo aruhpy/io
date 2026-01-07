@@ -20,6 +20,7 @@ html, body {
 }
 
 body {
+color: #666;
   padding: 40px 20px;
   font-family: sans-serif;
   background-color: #f5f5f5;
@@ -88,12 +89,33 @@ img, svg, table { max-width: 100%; height: auto; }
 }
 
 /* 페이지(PC 기본) */
-.banner-content.is-page {
+.banner-content.is-page{
   top: 12%;
-  height: 72%;
+  bottom: 7%;          /* ✅ 아래 공간 더 활용 (6~10% 사이로 취향 조절) */
+  height: auto;        /* ✅ height 고정 제거 */
   overflow: auto;
+  overflow-x: hidden;
+  padding-bottom: 24px; /* ✅ 맨 마지막 카드가 살짝 안 잘리게 여유 */
+  scrollbar-width: thin;
+  scrollbar-color: #ffe7f1 #ffffff; /* thumb / track */
 }
 
+/* 스크롤바(크롬/엣지/사파리) */
+.banner-content.is-page::-webkit-scrollbar{
+  width: 10px;
+}
+.banner-content.is-page::-webkit-scrollbar-track{
+  background: #fff9fc;
+  border-radius: 999px;
+}
+.banner-content.is-page::-webkit-scrollbar-thumb{
+  background: #ffb7d6;
+  border-radius: 999px;
+  border: 2px solid #fff9fc; /* 테두리로 더 부드럽게 */
+}
+.banner-content.is-page::-webkit-scrollbar-thumb:hover{
+  background: #ff9ec7;
+}
 /* =========================
    홈(배너 + 메뉴)
 ========================= */
@@ -135,7 +157,13 @@ img, svg, table { max-width: 100%; height: auto; }
   line-height: 1.8;
   padding: 0 6px;
 }
-
+/* =========================
+   타입정리(목록) 페이지: 본문 폭 제한 해제
+========================= */
+body.page-type-index .page-body{
+  max-width: 100%;
+  padding: 0;        /* 필요하면 0 6px로 되돌려도 됨 */
+}
 /* =========================
    홈 버튼 (PC/모바일 공통)
    - 요청: 가로 120px
@@ -162,17 +190,19 @@ a.back-home img{
   display: block;
   image-rendering: pixelated;
 }
-
 /* =========================================================
    MOBILE (480px 이하)
 ========================================================= */
 @media (max-width: 480px){
 
-  body { padding: 12px 20px; }
+  /* 기본(모바일 공통): 좌우는 20px 유지 */
+  body{
+    padding: 12px 20px;
+  }
 
   /* 1) 모바일 홈: 프레임 숨김 유지 */
   body.is-home .lace-frame--pc,
-  body.is-home .lace-frame--mobile {
+  body.is-home .lace-frame--mobile{
     display: none !important;
   }
 
@@ -202,16 +232,44 @@ a.back-home img{
     aspect-ratio: 900 / 1650 !important;
   }
 
-  body.is-page .lace-frame--pc{ display:none !important; }
+  body.is-page .lace-frame--pc{ display: none !important; }
   body.is-page .lace-frame--mobile{
-    display:block !important;
+    display: block !important;
     object-fit: contain !important;
   }
 
-  /* 3) 모바일 페이지 공통 폰트(전체 줄이기) */
+  /* 3) 모바일 페이지 공통(폰트/여백/프레임 중앙 정렬)
+     - 중복 body.is-page 블록을 "하나"로 합쳐서 충돌/헷갈림 제거
+     - 키 큰 폰에서도 중앙으로 보이도록: padding은 자동(clamp), 프레임은 margin auto
+  */
   body.is-page{
+    /* 폰트 */
     font-size: 14px;
     line-height: 1.45;
+
+    /* ✅ 화면이 길수록 위/아래 여백을 조금 더(작은 폰은 최소값 유지) */
+    padding-top: calc(clamp(6px, 3vh, 24px) + env(safe-area-inset-top));
+    padding-right: 20px;
+    padding-bottom: calc(clamp(6px, 3vh, 24px) + env(safe-area-inset-bottom));
+    padding-left: 20px;
+
+    /* ✅ iOS 뷰포트 단위 대응 + 중앙정렬 기반 */
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 프레임을 화면 가운데로 */
+  }
+
+  /* ✅ 프레임(배너박스) 자체를 "진짜 중앙"으로 고정 */
+  body.is-page .banner-box{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 0 0 auto;
   }
 
   /* 4) 모바일 홈버튼 더 위(프레임 안 상단 중앙) */
@@ -221,15 +279,17 @@ a.back-home img{
 
   /* 5) 모바일: 홈버튼/프레임/첫 컨텐츠 간격 “전 페이지 동일” */
   body.is-page .banner-content.is-page{
-    top: 74px !important;                 /* ✅ 여기 값으로 간격 통일 */
+    top: 74px !important;
     height: calc(100% - 92px) !important;
     overflow: auto !important;
     overflow-x: hidden !important;
-    width: 82% !important;                /* 살짝 좁혀서 가로스크롤 방지 */
+    width: 82% !important;
     max-width: 82% !important;
   }
 
-  body.is-page .page-body{
+  /* 타입정리/상세: 본문 폭 강제(모바일 깨짐 방지) */
+  body.page-type-index .page-body,
+  body.page-type-detail .page-body{
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 !important;
@@ -237,6 +297,6 @@ a.back-home img{
     overflow-wrap: anywhere !important;
     word-break: break-word !important;
   }
-}
 
+} /* ✅ MOBILE @media 닫기 */
 

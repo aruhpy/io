@@ -2,44 +2,86 @@
    components.css
    - 공지/타입정리/타입상세에서 쓰는 "컴포넌트" 스타일만
 ========================================================= */
-
-/* =========================
-   공통 텍스트/뱃지
-========================= */
-.tag-pink {
+.tag-pink{
   display: inline-block;
-  padding: 6px 10px;
-  border-radius: 10px;
-  background: #ffd6e6;
-  color: #222;
+  padding: 4px 8px;         /* ✅ 그대로 유지 */
+  border-radius: 9px;       /* ✅ 그대로 유지 */
+  background: #fff;         /* ✅ 흰 라벨 */
+  border: 1px dashed #ff9ec7; /* ✅ 스티치(점선) */
+  color: #ff9ec7;           /* ✅ 글씨 핑크 */
   font-weight: 800;
+  font-size: 13px;          /* ✅ 그대로 유지 */
+  position: relative;
+  box-sizing: border-box;
 }
 
-.em-pink { color: #ff4f9a; font-weight: 700; }
-.muted { opacity: 0.7; }
+/* ✅ 꼬리 제거(말풍선 방지) */
+.tag-pink::before{ display: none; }
+
+@font-face{
+  font-family: "Galmuri11";
+  src: url("../fonts/Galmuri11.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: "morris9";
+  src: url("/fonts/morris9.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* =========================
-   공지: 필독 박스
+   공지: 필독 박스 (리본 타이틀 바)
 ========================= */
 .notice-important {
   width: 100%;
   max-width: 520px;
-  margin: 0 auto 20px;
-  padding: 14px 16px;
+  margin: 0px auto 20px;     /* ✅ 유지 */
+  padding: 14px 16px;        /* ✅ 유지 */
   border-radius: 14px;
-  background: #fff3f7;
-  border: 1px solid #ffd0e1;
+  background: #fff9fc;
+  border: 1px solid #ffb7d6;
   text-align: center;
+
+  position: relative;         /* ✅ 리본 타이틀 위치용 */
+  padding-top: 22px;          /* ✅ 타이틀이 위에 뜨는 공간(글씨 크기 건드리는 거 아님) */
+  box-sizing: border-box;
 }
 
 .notice-important strong {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 8px;
+  position: absolute;         /* ✅ 리본처럼 위에 떠있게 */
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 10px;
+
+  background: #fff;
+  border: 1px dashed #ff9ec7; /* ✅ 스티치 라벨 느낌 */
+  color: #ff9ec7;
+
+  font-size: 14px;            /* ✅ PC 글씨 크기 유지 */
+  line-height: 1.2;
+  margin-bottom: 0;           /* ✅ absolute라 의미 없음 */
+}
+/* =========================
+========================= */
+/* (선택) 만약 너가 나중에 p로 감싸면 이게 더 정확히 먹음 */
+.notice-important .notice-important-text{
+  margin: 0;
+  font-size: 13px;     /* ✅ PC/기본 글씨 크기 */
+  line-height: 1.3;    /* ✅ 줄간격(행간) */
 }
 
-/* (선택) 만약 너가 나중에 p로 감싸면 이게 더 정확히 먹음 */
-.notice-important .notice-important-text { margin: 0; }
+.notice-important .em-pink{
+  font-size: 13px;     /* ✅ span.em-pink도 같이 축소 */
+  line-height: 1.3;
+}
 
 /* 모바일 전용 줄바꿈(권장: <br class="mobile-br">로 쓰기) */
 .mobile-br { display: none; }
@@ -51,10 +93,17 @@
   width: 100%;
   max-width: 520px;
   margin: 0 auto 14px;
-  border: 1px solid #eee;
+  border: 1px solid #ffd0e1;      /* ✅ 테두리만 핑크톤으로 살짝 */
   border-radius: 14px;
-  background: #fff;
   overflow: hidden;
+
+  /* ✅ 도트 패턴 배경 */
+background-color: #fff;
+  background-image:
+    radial-gradient(#fff1f7 1.6px, transparent 1.6px),
+    radial-gradient(#fff1f7 1.6px, transparent 1.6px);
+  background-size: 18px 18px;
+  background-position: 0 0, 9px 9px; /* ✅ 반칸 오프셋 = 대각선 배치 */
 }
 
 .notice-accordion summary {
@@ -62,17 +111,23 @@
   padding: 14px 16px;
   font-weight: 700;
   list-style: none;
-}
 
-.notice-accordion summary::-webkit-details-marker { display: none; }
-.notice-accordion summary::after { content: "▾"; float: right; opacity: 0.6; }
-.notice-accordion[open] summary::after { content: "▴"; }
+  /* ✅ 헤더는 도트가 보이게 투명(패턴 살림) */
+  background: transparent;
+  color: #ff9ec7;
+}
 
 .notice-body {
   padding: 0 16px 16px;
-  line-height: 1.8;
+  font-size: 13px;
+  line-height: 1.65;
   text-align: left;
+
+  /* ✅ 본문은 가독성 위해 흰 배경으로 덮기 */
+  background: #fff;
 }
+
+/*=========== */
 
 .notice-h2, .notice-h3 {
   margin: 10px 0;
@@ -90,9 +145,8 @@
   border-top: 1px solid #eee;
   margin: 14px 0;
 }
-
 /* =========================
-   타입정리(그리드)
+   타입정리(그리드) - 도트 매트 카드(이미지+캡션 분리)
 ========================= */
 .type-grid{
   width: 100%;
@@ -102,27 +156,107 @@
   gap: 18px;
 }
 
+/* ✅ 카드(링크) 자체: 이제는 "레이아웃 컨테이너"만 */
 .type-card{
   display: grid;
   justify-items: center;
   gap: 10px;
   text-decoration: none;
   color: inherit;
+  box-sizing: border-box;
 }
 
-.type-card img{
+/* ✅ 이미지 전용 ‘매트지(액자)’ */
+.type-thumb{
+  width: 100%;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid #d7d7d7;
+
+  background-color: #fff;
+  background-image:
+    radial-gradient(#fff1f7 1.6px, transparent 1.6px),
+    radial-gradient(#fff1f7 1.6px, transparent 1.6px);
+  background-size: 18px 18px;
+  background-position: 0 0, 9px 9px;
+
+  box-sizing: border-box;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+/* ✅ 이미지(안쪽 내용물) */
+.type-thumb img{
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   image-rendering: pixelated;
+
+  background: #fff;
+  border-radius: 14px;
+  border: 2px solid #ffe0ec;
+  box-sizing: border-box;
 }
 
-.type-name{
-  font-size: 14px;
+/* ✅ 타입명(폰트 설정은 너가 이미 완성한 그대로 유지) */
+body.page-type-index .type-name{
+  font-family: "Galmuri11", sans-serif;
+  color: #ff9ec7;
+  font-weight: 600;
+
+  margin: 0;
+  width: 100%;
+  padding: 8px 8px;
+
+  font-size: 11px;
+  line-height: 1.6;
+  position: relative;
+  top: 1px;
   text-align: center;
-  line-height: 1.3;
+  box-sizing: border-box;
 }
 
+/* PC hover — ✅ 액자만 반응 */
+@media (hover:hover){
+  .type-card:hover .type-thumb{
+    transform: translateY(-2px);
+    border-color: #ffb7d6;
+    box-shadow: 0 10px 18px rgba(255, 158, 199, 0.18);
+  }
+}
+
+/* 모바일 */
+@media (max-width: 480px){
+  .type-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .type-card{
+    gap: 2px;
+  }
+
+  .type-thumb{
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .type-thumb img{
+    border-radius: 10px;
+  }
+
+body.page-type-index .type-name{
+  font-family: "morris9", "Galmuri11", sans-serif; /* ✅ 모바일만 폰트 */
+  font-size: 12px;          /* ✅ 모바일 글씨 크기 */
+  letter-spacing: 0.5px;    /* ✅ 모바일 자간 */
+  font-weight: 400;         /* ✅ 두께 유지(PC랑 동일) */
+
+  padding: 4px 0;
+  line-height: 1.0;
+  position: relative;
+  top: 2px;
+  }
+
+}
 /* 타입정리/타입상세 제목 숨기기 */
 body.page-type-index h1,
 body.page-type-detail h1{
@@ -135,7 +269,7 @@ body.page-type-detail h1{
 body.page-type-detail .chip-wrap{
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 1px;
   margin-top: 12px;
 }
 
@@ -146,7 +280,7 @@ body.page-type-detail .chip{
   border: 1px solid #ffd0e0;
   background: #fff;
   color: #ff5f96;
-  font-weight: 900;
+  font-weight: 400;
   font-size: 12px;
 }
 
@@ -170,55 +304,79 @@ body.page-type-detail .chip{
   border-radius: 12px;
 }
 
-/* =========================
-   MOBILE (480px 이하)
-   - 글씨 크기/가로 잘림 방지/필독 문구 더 작게
-========================= */
-@media (max-width: 480px){
+ @media (max-width: 480px){
 
-  /* 아이폰 390 기준: 필독 박스 잘림 방지 */
-  body.is-page .notice-important{
-    max-width: 100%;
-    width: 100%;
-    padding: 12px 12px;
-    margin: 0 auto 12px auto;
-  }
+  /* 아이폰 390 기준: 필독 박스 잘림 방지 + 가로 폭 줄이기 */
+body.is-page .notice-important{
+  width: 100%;
+  max-width: 340px;
+  margin: -5px auto 12px;
 
+  /* ✅ 리본(strong) 자리 확보: padding-top이 핵심 */
+  padding: 22px 10px 10px;
+
+  box-sizing: border-box;
+  overflow: visible; /* ✅ 리본 타이틀 잘림 방지 */
+}
+
+  /* ✅ 필독 안내: 1px 줄이기 (13 → 12) */
   body.is-page .notice-important strong{
-    font-size: 15px;
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 4px;
   }
 
-  /* ✅ “아래 공지사항…” 문장(현재는 em-pink로 들어감) 크기 줄이기 */
+  /* ✅ 아래 핑크 문장: 2px 줄이기 (12 → 10) */
   body.is-page .notice-important .em-pink,
   body.is-page .notice-important .notice-important-text{
-    font-size: 12px !important;
-    line-height: 1.35 !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
   }
 
   /* 모바일에서만 강제 줄바꿈 켜기 */
   body.is-page .mobile-br{ display: inline; }
 
-  /* 공지 아코디언 글씨도 살짝 축소 */
+  /* 공지 아코디언 제목 */
   body.is-page .notice-accordion summary{
-    font-size: 13px;
-    padding: 10px 12px;
+    font-size: 11px;
+    padding: 9px 11px;
   }
 
+  /* 공지 본문 */
   body.is-page .notice-body{
-    font-size: 13px;
+    font-size: 11px;
     line-height: 1.35;
   }
 
-  body.is-page .tag-pink{
-    font-size: 13px;
-    padding: 4px 8px;
-    border-radius: 8px;
-  }
+  /* 모바일 알약 */
+ body.is-page .tag-pink{
+  font-size: 11px;          /* ✅ 유지 */
+  padding: 4px 5px;         /* ✅ 유지 */
+  border-radius: 8px;       /* ✅ 유지 */
+  margin-right: 3px;        /* ✅ 유지 */
+  margin-bottom: 3px;       /* ✅ 유지 */
 
-  /* 타입정리: 모바일 2열 */
-  .type-grid{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
+  background: #fff;               /* ✅ PC와 동일 */
+  border: 1px dashed #ff9ec7;     /* ✅ 스티치 */
+  color: #ff9ec7;                 /* ✅ 글씨 핑크 */
+  font-weight: 800;
+  box-sizing: border-box;
+}
+
+/* ✅ 모바일에서도 꼬리 제거 */
+body.is-page .tag-pink::before{ display: none; }
+
+
+   /* 타입정리: 모바일 2열 */
+.type-grid{
+  max-width: 340px;                     /* ✅ 모바일 프레임 폭에 안정적으로 */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 4px 0 0;
+}
+
+/* ✅ 타입정리: 모바일에서만 캡션 폰트 변경 */
+body.page-type-index .type-name{
+  font-family: "morris9", "Galmuri11", sans-serif;
 }
 
