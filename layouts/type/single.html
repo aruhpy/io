@@ -1,25 +1,31 @@
 {{ define "main" }}
 <main class="type-main">
 
-  <!-- ✅ SAMPLE: 공지사항 같은 아코디언 -->
-  <details class="notice-accordion type-sample">
-   <summary><span class="em-pink">SAMPLE</span></summary>
+  {{ $imgs := .Resources.Match "img/*" }}
 
-    {{ $imgs := .Resources.Match "img/*" }}
-    {{ if $imgs }}
-      <div class="type-gallery-grid">
+  {{ if $imgs }}
+    <section class="type-sample" aria-label="샘플 이미지">
+      <div class="type-sample-title">SAMPLE</div>
+
+      <div class="type-gallery-slider" aria-label="샘플 이미지 가로 스크롤 갤러리">
         {{ range sort $imgs "Name" "asc" }}
-          <a class="type-gallery-item" href="{{ .RelPermalink }}">
-            <img src="{{ .RelPermalink }}" alt="" loading="lazy">
-          </a>
+          <figure class="type-gallery-slide">
+            <img
+              src="{{ .RelPermalink }}"
+              alt="{{ $.Title }} 샘플"
+              loading="lazy"
+              decoding="async"
+            >
+          </figure>
         {{ end }}
       </div>
-    {{ else }}
-      <div class="notice-body">img 폴더에 이미지가 없어요!</div>
-    {{ end }}
-  </details>
 
-  <!-- ✅ 설명은 접지 않고 바로 노출 -->
+      <p class="type-sample-hint">좌우로 밀어서 더 많은 샘플을 볼 수 있어요.</p>
+    </section>
+  {{ else }}
+    <div class="notice-body">img 폴더에 이미지가 없어요!</div>
+  {{ end }}
+
   <div class="page-body type-desc">
     {{ .Content }}
   </div>
