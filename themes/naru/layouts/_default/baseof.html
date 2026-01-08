@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{{ "style.css" | relURL }}" />
   </head>
 
-  <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }} {{ with .Params.bodyClass }}{{ . }}{{ end }}">
+ <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}{{ if eq .Section "type" }} {{ if .IsNode }}page-type-index{{ else }}page-type-detail{{ end }}{{ end }} {{ with .Params.bodyClass }}{{ . }}{{ end }}">
+
 
     <div class="banner-box">
       {{ if not .IsHome }}
@@ -35,33 +36,40 @@
       </div>
     </div>
 
-    <script>
-      (function () {
-        document.addEventListener('contextmenu', function (e) {
-          const img = e.target && e.target.closest && e.target.closest('img');
-          if (img) e.preventDefault();
-        }, { passive: false });
+   <script>
+  (function () {
+    document.addEventListener('contextmenu', function (e) {
+      const img = e.target && e.target.closest && e.target.closest('img');
+      if (img) e.preventDefault();
+    }, { passive: false });
 
-        document.addEventListener('touchstart', function (e) {
-          const img = e.target && e.target.closest && e.target.closest('img');
-          if (!img) return;
+    document.addEventListener('touchstart', function (e) {
+      const img = e.target && e.target.closest && e.target.closest('img');
+      if (!img) return; // ✅ img가 아니면 아무것도 안 함 (에러 방지)
 
-          // 레이스 프레임은 예외
-          if (img.classList.contains('lace-frame')) return;
+      // ✅ 라이트박스/슬라이더는 예외 (클릭/스와이프 살아야 함)
+      if (img.closest('.type-lightbox')) return;
+      if (img.closest('.type-gallery-slider')) return;
 
-          // 링크/버튼 안 이미지는 예외(메뉴/홈버튼 살아야 함)
-          if (img.closest('a, button')) return;
+      // 레이스 프레임은 예외
+      if (img.classList.contains('lace-frame')) return;
 
-          e.preventDefault();
-        }, { passive: false });
+      // 링크/버튼 안 이미지는 예외(메뉴/홈버튼 살아야 함)
+      if (img.closest('a, button')) return;
 
-        document.addEventListener('dragstart', function (e) {
-          const img = e.target && e.target.closest && e.target.closest('img');
-          if (img) e.preventDefault();
-        }, { passive: false });
-      })();
-    </script>
+      // 그 외 이미지는 저장/롱탭 방지
+      e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('dragstart', function (e) {
+      const img = e.target && e.target.closest && e.target.closest('img');
+      if (img) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+
 
   </body>
 </html>
+
 

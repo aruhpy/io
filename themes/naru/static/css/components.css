@@ -45,29 +45,22 @@
   background: #fff9fc;
   border: 1px solid #ffb7d6;
   text-align: center;
-
-  position: relative;         /* ✅ 리본 타이틀 위치용 */
-  padding-top: 22px;          /* ✅ 타이틀이 위에 뜨는 공간(글씨 크기 건드리는 거 아님) */
+}
+  width: 100%;
+  max-width: 360px;
   box-sizing: border-box;
 }
+  /* ✅ 한 줄(아이콘+텍스트) 자체를 가운데로 */
+  display: inline-grid;
+  grid-template-columns: 18px 1fr;
+  gap: 6px;
+  align-items: start;
 
-.notice-important strong {
-  position: absolute;         /* ✅ 리본처럼 위에 떠있게 */
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
+  width: min(360px, 100%);
+  text-align: left;
 
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 10px;
-
-  background: #fff;
-  border: 1px dashed #ff9ec7; /* ✅ 스티치 라벨 느낌 */
-  color: #ff9ec7;
-
-  font-size: 14px;            /* ✅ PC 글씨 크기 유지 */
-  line-height: 1.2;
-  margin-bottom: 0;           /* ✅ absolute라 의미 없음 */
+  padding: 4px 2px;
+  box-sizing: border-box;
 }
 /* =========================
 ========================= */
@@ -345,72 +338,154 @@ body.page-type-index h1,
 body.page-type-detail h1{
   display: none !important;
 }
+/* =========================
+   타입상세: 페이지 타이틀
+========================= */
+body.page-type-detail .type-page-title{
+  font-family: "Galmuri11", sans-serif;
+  color: #ff9ec7;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-align: center;
+  margin: 4px 0 10px;
+  font-size: 14px;
+}
 
 /* =========================
-   타입상세: 칩/갤러리
+   타입상세: 라이트박스(팝업 크게보기)
 ========================= */
-body.page-type-detail .chip-wrap{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1px;
-  margin-top: 12px;
+body.page-type-detail .type-gallery-open{
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: block;
+  width: 100%;
+
+  /* ✅ PC 드래그가 편하도록 기본은 grab */
+  cursor: grab;
+  border-radius: 12px;
 }
 
-body.page-type-detail .chip{
-  display: inline-flex;
-  padding: 6px 10px;
+body.page-type-detail .type-gallery-open:active{
+  cursor: grabbing;
+}
+
+body.page-type-detail .type-gallery-open:focus-visible{
+  outline: 2px solid #ffd0e1;
+  outline-offset: 4px;
+}
+
+body.page-type-detail .type-lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+body.page-type-detail .type-lightbox.is-open{
+  display: block;
+}
+body.page-type-detail .type-lightbox__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+body.page-type-detail .type-lightbox__panel{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 720px);
+  max-height: 86vh;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 14px;
+  border: 2px solid #ffe0ec;
+}
+body.page-type-detail .type-lightbox__img{
+  width: 100%;
+  height: auto;
+  max-height: calc(86vh - 40px);
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+}
+body.page-type-detail .type-lightbox__close{
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  width: 34px;
+  height: 34px;
   border-radius: 999px;
-  border: 1px solid #ffd0e0;
+  border: 1px solid #ffd0e1;
   background: #fff;
   color: #ff5f96;
-  font-weight: 400;
-  font-size: 12px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
 }
 
-/* ✅ 타입상세: 샘플 가로 슬라이드(스크롤 스냅) */
+/* =========================
+   타입상세: 샘플 슬라이더
+========================= */
+body.page-type-detail .type-main{
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 body.page-type-detail .type-sample{
+  width: 100%;
   margin: 0 0 14px;
   box-sizing: border-box;
 }
 
-body.page-type-detail .type-sample-title{
-  margin: 0 0 8px;
-  text-align: left;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: #ff9ec7;
-}
-
 body.page-type-detail .type-gallery-slider{
   display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 10px;
+
+  width: 100%;
+  max-width: 100%;
 
   overflow-x: auto;
   overflow-y: hidden;
-
   padding: 2px 2px 10px;
-  scroll-snap-type: x mandatory;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 2px;
   -webkit-overflow-scrolling: touch;
+
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
 
   scrollbar-width: thin;
   scrollbar-color: #ffd0e1 transparent;
 
+  cursor: grab;
   box-sizing: border-box;
 }
 
+body.page-type-detail .type-gallery-slider.is-dragging{
+  cursor: grabbing;
+}
+
 body.page-type-detail .type-gallery-slide{
-  flex: 0 0 auto;
+  flex: 0 0 220px;
   width: 220px;
-
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-
   margin: 0;
+  scroll-snap-align: start;
 }
 
 @media (min-width: 700px){
   body.page-type-detail .type-gallery-slide{
+    flex-basis: 260px;
     width: 260px;
   }
 }
@@ -419,11 +494,13 @@ body.page-type-detail .type-gallery-slide img{
   width: 100%;
   height: auto;
   display: block;
-
   background: #fff;
   border-radius: 12px;
   border: 2px solid #ffe0ec;
   box-sizing: border-box;
+
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 body.page-type-detail .type-sample-hint{
@@ -451,7 +528,404 @@ body.page-type-detail .type-gallery-slider::-webkit-scrollbar-thumb:hover{
   background-clip: padding-box;
 }
 
+
+/* =========================
+   타입상세: 신청양식 + 주의사항 (합본 박스)
+   - O/X 제거 (HTML에서도 제거)
+   - 신청양식과 첫 줄 간격 확보
+   - '옵션 추가 여부' 줄도 동일 간격으로 정렬
+========================= */
+/* =========================
+   타입상세: 공통 박스 + 메뉴판(점점점 메뉴)
+========================= */
+body.page-type-detail .type-box{
+  width: 100%;
+  margin: 20px 0;
+  padding: 16px 14px 12px;
+  border-radius: 14px;
+  background: #fff9fc;
+  border: 1px solid #ffd0e1;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ✅ 위에 떠있는 라벨(신청양식/불가주민 등) */
+body.page-type-detail .type-box-title{
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px dashed #ffb7d2;
+  color: #ff9ec7;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+}
+
+/* ✅ 가격 메뉴판 */
+body.page-type-detail .type-box.type-price .type-menu{
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+body.page-type-detail .type-menu-row{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  padding: 0px 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+body.page-type-detail .type-menu-row + .type-menu-row{
+  margin-top: 2px;
+}
+/*---------
+위아래주민
+--------*/
+body.page-type-detail .type-menu-left{
+  color: #ffb7d2;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+body.page-type-detail .type-menu-dots{
+  height: 1em;
+  transform: translateY(-2px);
+  background-image: radial-gradient(circle, #ffd0e1 1.6px, transparent 1.7px);
+  background-size: 12px 2px;
+  background-repeat: repeat-x;
+  background-position: left 75%;
+}
+
+body.page-type-detail .type-menu-right{
+  color: #e3c3cd;
+  font-weight: 800;
+  font-size: 11px;
+  white-space: nowrap;
+  letter-spacing: 2px;
+}
+
+body.page-type-detail .type-menu-sub{
+  grid-column: 1 / -1;
+  margin-top: -8px;
+  font-size: 11px;
+  line-height: 1.2;
+  color: #e3c3cd;
+  letter-spacing: 1.5px;
+}
+
+/* =========================
+   타입상세: 신청양식 + 주의사항(♡) 합본 박스
+   - 불가주민은 이 박스 밖(별도 섹션)
+========================= */
+body.page-type-detail .type-box.type-combo{
+  background-color: #fff;
+  background-image:
+    radial-gradient(#fff1f7 1.6px, transparent 1.6px),
+    radial-gradient(#fff1f7 1.6px, transparent 1.6px);
+  background-size: 18px 18px;
+  background-position: 0 0, 9px 9px;
+
+  border: 1px solid #ffd0e1;
+  border-radius: 14px;
+
+  padding: 22px 14px 14px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* ✅ 안쪽 내용 덩어리 폭 */
+body.page-type-detail .type-combo-inner{
+  width: min(380px, 100%);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ✅ 신청양식 줄 */
+body.page-type-detail .type-formlist{
+  width: 100%;
+  margin: 12px auto 0;
+  display: grid;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+body.page-type-detail .type-formrow{
+  display: grid;
+  grid-template-columns: 132px 10px 1fr;
+  gap: 8px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+body.page-type-detail .type-formlabel{
+  font-size: 11px;
+  line-height: 1.2;
+  color: #a1a1a1;
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: right;
+  letter-spacing: 2px;
+}
+
+body.page-type-detail .type-formcolon{
+  font-size: 11px;
+  line-height: 1.2;
+  color: #a1a1a1;
+  text-align: center;
+}
+
+body.page-type-detail .type-formvalue{
+  min-height: 1em;
+}
+
+/* ✅ 신청양식/주의사항 사이 점선 */
+body.page-type-detail .type-dots-divider{
+  height: 10px;
+  margin: 12px 0 10px;
+  background-image: radial-gradient(circle, #ffd0e1 1.6px, transparent 1.7px);
+  background-size: 12px 2px;
+  background-repeat: repeat-x;
+  background-position: left center;
+}
+
+/* ✅ ♡ഒ 리스트: 줄바꿈/행간 예쁘게(PC/모바일 공통) */
+body.page-type-detail .type-heartlist{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+body.page-type-detail .type-heart-item{
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  column-gap: 8px;
+  align-items: start;
+  padding: 2px 0;
+  box-sizing: border-box;
+}
+
+body.page-type-detail .type-heart-icon{
+  color: #ffd0e1;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  transform: translateY(1px);
+  font-size: 10px;
+}
+
+body.page-type-detail .type-heart-text{
+  font-size: 10px;
+  line-height: 1.2;
+  color: #a1a1a1;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 모바일에서 라벨 폭만 살짝 줄이기 */
+@media (max-width: 480px){
+  body.page-type-detail .type-combo-inner{
+    width: min(340px, 100%);
+  }
+
+  body.page-type-detail .type-formrow{
+    grid-template-columns: 120px 10px 1fr;
+  }
+
+  body.page-type-detail .type-heart-item{
+    grid-template-columns: 20px 1fr;
+  }
+
+  body.page-type-detail .type-heart-text{
+    font-size: 9px;
+    line-height: 1.32;
+  }
+}
+
+/* =========================
+   타입상세: 불가주민(검색/칩)
+========================= */
+body.page-type-detail .type-accordion{
+  width: 100%;
+}
+
+body.page-type-detail .type-accordion-summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 12px;
+  color: #ffb7d2;
+  list-style: none;
+  line-height: 1;
+  transform: translateY(-2px);
+  letter-spacing: 2px;
+
+  /* ✅ 텍스트(불가주민) + 오른쪽 삼각형 배치 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  /* ✅ 네모칸 위/아래 간격 줄이기
+     기존: padding: 6px 2px;
+     변경: 위 -20px(6→2), 아래 -15px(6→3) */
+  padding: 2px 2px 2px 2px;
+}
+
+/* 크롬/사파리 기본 마커(삼각형) 제거 */
+body.page-type-detail .type-accordion-summary::-webkit-details-marker{
+  display: none;
+}
+
+/* 표준 마커(브라우저에 따라 적용) 제거 */
+body.page-type-detail .type-accordion-summary::marker{
+  content: "";
+}
+
+/* ✅ 우리가 쓸 삼각형(▾) */
+body.page-type-detail .type-accordion-summary::after{
+  content: "▾";
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 900;
+  color: #ffb7d2;
+
+  transform: translateY(1px);
+  transition: transform 180ms ease;
+}
+
+/* ✅ 열렸을 때 삼각형 방향 뒤집기 */
+body.page-type-detail .type-accordion[open] > .type-accordion-summary::after{
+  transform: translateY(1px) rotate(180deg);
+}
+
+body.page-type-detail .type-ban-wrap{
+  margin-top: 8px;
+}
+
+body.page-type-detail .type-ban-search{
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid #ffadcc;
+  padding: 8px 12px;
+  font-size: 12px;
+  outline: none;
+
+  /* ✅ 실제 입력 글자 색 */
+  color: #eaa5bf;
+  caret-color: #eaa5bf;
+
+  background: #fff;
+}
+
+/* ✅ placeholder(“이름 검색…”) 색 */
+body.page-type-detail .type-ban-search::placeholder{
+  color: #eaa5bf;
+  opacity: 1; /* 크롬에서 연해지는 거 방지 */
+}
+
+/* ✅ iOS/사파리에서 가끔 회색 고정되는 경우 방지 */
+body.page-type-detail .type-ban-search{
+  -webkit-text-fill-color: #eaa5bf;
+}
+
+body.page-type-detail .type-ban-search:focus{
+  border-color: #f;
+}
+
+body.page-type-detail .type-ban-chips{
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+body.page-type-detail .type-ban-chip{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 600px;
+  background: #fff;
+  border: 1px dashed #ffb7d2;
+  color: #ffadcc;
+  font-size: 9px;
+  font-weight: 600;
+}
+/*--------------*/
+
+
+/* 라이트박스 */
+body.page-type-detail .type-lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+body.page-type-detail .type-lightbox.is-open{
+  display: block;
+}
+
+body.page-type-detail .type-lightbox__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+body.page-type-detail .type-lightbox__panel{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 720px);
+  max-height: 86vh;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 14px;
+  border: 2px solid #ffe0ec;
+}
+
+body.page-type-detail .type-lightbox__img{
+  width: 100%;
+  height: auto;
+  max-height: calc(86vh - 40px);
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+}
+
+body.page-type-detail .type-lightbox__close{
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid #ffd0e1;
+  background: #fff;
+  color: #ff5f96;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
  @media (max-width: 480px){
+
+  /* 불가주민 칩 더 줄이기 */
+   body.page-type-detail .type-accordion-summary{ padding: 0px px; }
 
   /* 아이폰 390 기준: 필독 박스 잘림 방지 + 가로 폭 줄이기 */
 body.is-page .notice-important{
@@ -527,3 +1001,4 @@ body.page-type-index .type-name{
   font-family: "morris9", "Galmuri11", sans-serif;
 }
 
+} /* ✅ @media (max-width: 480px) 닫기 */

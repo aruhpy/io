@@ -1,7 +1,8 @@
 ---
 title: "타입 정리"
-bodyClass: page-type-index
+bodyClass: "is-page page-type-index"
 ---
+
 
 <link rel="stylesheet" href="type.css">
 

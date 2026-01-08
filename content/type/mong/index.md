@@ -1,33 +1,23 @@
 ---
 title: "몽글망글 타입"
-bodyClass: page-type-detail
+
+resident_mode: "has"
+duplicate_rule: "allow"
+duplicate_notice: "주민 중복 신청 가능합니다. 동일 주민은 이전 작업과 동일 적용됩니다! 원하실 경우 표정/악세사리만 변경 가능합니다."
+
+price:
+  rows:
+    - label: "기본 (1인 + 주민 또는 크리쳐)"
+      value: "1.5"
+    - label: "화려캐"
+      value: "추금 +0.1 ~ +0.5"
+
+form:
+  - label: "캐릭터/주민 사진 첨부"
+  - label: "배경 색상"
+  - label: "빠지면 안 되는 요소"
+    hint: "가능한 반영하되, 타입 특성상 일부는 생략되거나 단순화될 수 있습니다."
+
+notes:
+  - "디테일이 크게 단순화되는 타입입니다!"
 ---
-
-<div class="type-style">
-
-<div class="pill-title">💗 몽글망글 마감선</div>
-
-<ul class="pink-list">
-  <li><span><span class="bold">위 + 아래 주민 (기본)</span> : <span class="pink">1.5</span></span></li>
-  <li><span><span class="bold">위 주민 + 아래 크리쳐</span> 신청 시 <span class="pink">추금 + 0.5</span></span></li>
-</ul>
-
-<div class="dot-divider"></div>
-
-<div class="pill-title">💗 신청 양식 (복붙 가능)</div>
-
-<ol class="form-list">
-  <li>주민 사진 첨부 :</li>
-  <li>배경 색상 :</li>
-  <li>참고 사항 :</li>
-</ol>
-
-<div class="notice-box">
-  <div class="notice-title">중복 주민은 받지 않는 타입입니다!!</div>
-  <div class="notice-text">
-    중복 불가 주민 목록은 주기적으로 업데이트하고 있으나, 업데이트가 다소 늦어질 수 있습니다.<br>
-    다만, 이전에 작업했던 주민은 대부분 기억하고 있으니 크게 걱정하지 않으셔도 됩니다! &gt;_&lt;
-  </div>
-</div>
-
-</div><!-- /.type-style -->

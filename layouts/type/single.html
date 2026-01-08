@@ -1,34 +1,149 @@
 {{ define "main" }}
 <main class="type-main">
 
-  {{ $imgs := .Resources.Match "img/*" }}
+  <!-- ✅ 페이지 타이틀 -->
+  <h1 class="type-page-title">{{ .Title }}</h1>
 
-  {{ if $imgs }}
-    <section class="type-sample" aria-label="샘플 이미지">
-      <div class="type-sample-title">SAMPLE</div>
+  <!-- ✅ 샘플 슬라이더 -->
+{{ $imgs := .Resources.Match "img/*" }}
+{{ if gt (len $imgs) 0 }}
+  <section class="type-sample">
+    <div class="type-gallery-slider" id="typeGallery">
+      {{ range $imgs }}
+      <figure class="type-gallery-slide">
+        <button class="type-gallery-open" type="button" data-src="{{ .RelPermalink }}" aria-label="이미지 크게 보기">
+          <img src="{{ .RelPermalink }}" alt="샘플 이미지" loading="lazy" draggable="false">
+        </button>
+      </figure>
+      {{ end }}
+    </div>
+    <p class="type-sample-hint">좌우로 밀어서 더 많은 샘플을 볼 수 있어요.</p>
+  </section>
 
-      <div class="type-gallery-slider" aria-label="샘플 이미지 가로 스크롤 갤러리">
-        {{ range sort $imgs "Name" "asc" }}
-          <figure class="type-gallery-slide">
-            <img
-              src="{{ .RelPermalink }}"
-              alt="{{ $.Title }} 샘플"
-              loading="lazy"
-              decoding="async"
-            >
-          </figure>
-        {{ end }}
-      </div>
-
-      <p class="type-sample-hint">좌우로 밀어서 더 많은 샘플을 볼 수 있어요.</p>
-    </section>
-  {{ else }}
-    <div class="notice-body">img 폴더에 이미지가 없어요!</div>
+  <!-- ✅ 라이트박스 -->
+  <div class="type-lightbox" id="typeLightbox" aria-hidden="true">
+    <div class="type-lightbox__backdrop" data-close="1"></div>
+    <div class="type-lightbox__panel" role="dialog" aria-modal="true" aria-label="샘플 크게보기">
+      <button class="type-lightbox__close" type="button" data-close="1" aria-label="닫기">×</button>
+      <img class="type-lightbox__img" id="typeLightboxImg" alt="샘플 크게 보기">
+    </div>
+  </div>
   {{ end }}
 
-  <div class="page-body type-desc">
-    {{ .Content }}
-  </div>
+  <!-- ✅ 가격 메뉴 -->
+  {{ with .Params.price }}
+  <section class="type-box type-price">
+    <div class="type-menu">
+      {{ range .rows }}
+      <div class="type-menu-row">
+        <div class="type-menu-left">{{ .label }}</div>
+        <div class="type-menu-dots"></div>
+        <div class="type-menu-right">{{ .value }}</div>
+
+        {{ with .sub }}
+        <div class="type-menu-sub">{{ . }}</div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- ✅ 신청양식 + 주의사항(♡) 합본 박스 -->
+  <section class="type-box type-combo">
+    <div class="type-box-title">신청 양식</div>
+
+    <div class="type-combo-inner">
+
+      {{ with .Params.form }}
+      <div class="type-formlist">
+        {{ range . }}
+        <div class="type-formrow">
+          <div class="type-formlabel">{{ .label }}</div>
+          <div class="type-formcolon">:</div>
+          <div class="type-formvalue"></div>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      <div class="type-dots-divider" aria-hidden="true"></div>
+
+      {{ with .Params.notes }}
+      <ul class="type-heartlist">
+        {{ range . }}
+        <li class="type-heart-item">
+          <span class="type-heart-icon">♡ഒ</span>
+          <span class="type-heart-text">{{ . }}</span>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+
+    </div>
+  </section>
+
+  <!-- ✅ 불가 주민(검색/칩) — 신청양식 박스 밖(별도), 프레임 안 -->
+{{ with .Params.ban_residents }}
+<section class="type-box type-ban">
+  <details class="type-accordion">
+    <summary class="type-accordion-summary">불가주민</summary>
+
+    <div class="type-ban-wrap">
+      <input class="type-ban-search" type="text" placeholder="이름 검색..." />
+
+      <div class="type-ban-chips">
+        {{ range . }}
+        <button class="type-ban-chip" type="button">{{ . }}</button>
+        {{ end }}
+      </div>
+    </div>
+  </details>
+</section>
+{{ end }}
 
 </main>
+
+<script>
+(function(){
+  // 라이트박스
+  const lb = document.getElementById('typeLightbox');
+  const lbImg = document.getElementById('typeLightboxImg');
+  const gallery = document.getElementById('typeGallery');
+
+  if(gallery && lb && lbImg){
+  if(lb.parentElement !== document.body){
+  document.body.appendChild(lb);
+}
+       gallery.addEventListener('click', (e) => {
+      const btn = e.target.closest('.type-gallery-open');
+      if(!btn) return;
+      const src = btn.getAttribute('data-src');
+      if(!src) return;
+
+      lbImg.src = src;
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden','false');
+    });
+
+        lb.addEventListener('click', (e) => {
+      const closeBtn = e.target.closest('[data-close=\"1\"]');
+      if(!(closeBtn || e.target === lb)) return;
+
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden','true');
+      lbImg.removeAttribute('src');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && lb.classList.contains('is-open')){
+        lb.classList.remove('is-open');
+        lb.setAttribute('aria-hidden','true');
+        lbImg.removeAttribute('src');
+      }
+    });
+  }
+})();
+</script>
 {{ end }}
+
