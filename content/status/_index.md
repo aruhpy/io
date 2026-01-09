@@ -7,60 +7,18 @@ bodyClass: page-status
 draft: false
 
 ---
+<div class="sheet-embed">
+  <div class="sheet-embed-head">
+    <span class="sheet-chip">실시간 진행상황</span>
+    <span class="sheet-sub">※ 모바일은 좌우 스크롤이 필요할 수 있어요</span>
+  </div>
 
-
-
-<div class="pill-title">커미션 진행상황</div>
-
-
-
-<div class="status-table-wrap">
-
-&nbsp; <table class="status-table">
-
-&nbsp;   <thead>
-
-&nbsp;     <tr>
-
-&nbsp;       <th>신청자</th>
-
-&nbsp;       <th>신청 날짜</th>
-
-&nbsp;       <th>마감 날짜</th>
-
-&nbsp;       <th>신청 타입</th>
-
-&nbsp;       <th>진행 상태</th>
-
-&nbsp;     </tr>
-
-&nbsp;   </thead>
-
-&nbsp;   <tbody>
-
-&nbsp;     <tr>
-
-&nbsp;       <td>ㅇㅇ님</td>
-
-&nbsp;       <td>2026-01-06</td>
-
-&nbsp;       <td>2026-02-06</td>
-
-&nbsp;       <td>보들 타입</td>
-
-&nbsp;       <td><span class="status-badge wait">대기</span></td>
-
-&nbsp;     </tr>
-
-&nbsp;   </tbody>
-
-&nbsp; </table>
-
+  <div class="sheet-embed-frame">
+    <iframe
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSR0wgWlZe0goc9Sisyf2st2blO6qXW_s3MF780JKY_8QWkwTsNn9lfIcjMNCKdmYbhRonV_OtZwC2y/pubhtml?gid=2121109456&single=true&widget=true&headers=false&rm=minimal"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
 </div>
-
-
-
-</div>
-
-{{ end }}
 

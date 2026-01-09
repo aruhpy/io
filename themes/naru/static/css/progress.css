@@ -47,6 +47,121 @@
   margin: 6px 0;
 }
 
+/* =========================
+   진행상황: 구글시트 임베드
+========================= */
+.sheet-embed{
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ffd0e1;
+  border-radius: 18px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+  position: relative;
+}
+
+.sheet-embed::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(#fff2f7 2px, transparent 2px),
+    radial-gradient(#fff2f7 2px, transparent 2px);
+  background-size: 22px 22px;
+  background-position: 0 0, 11px 11px;
+  opacity: .9;
+  pointer-events: none;
+}
+
+.sheet-embed-head{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid rgba(255, 208, 225, .8);
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(2px);
+}
+
+.sheet-embed-head .sheet-chip{
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px dashed #ff9ec7;
+  background: #fff;
+  color: #ff78b3;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: ;
+}
+
+.sheet-embed-head .sheet-sub{
+  font-size: 12px;
+  color: rgba(0,0,0,.55);
+  font-weight: 800;
+}
+
+.sheet-embed-frame{
+  position: relative;
+  z-index: 1;
+  padding: 12px;
+}
+
+.sheet-embed-frame iframe{
+  width: 100%;
+  border: 0;
+  display: block;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.05);
+
+  /* PC 기본 높이 */
+  height: 650px;
+}
+
+/* 모바일 임베드 */
+@media (max-width: 480px){
+  .sheet-embed{
+    border-radius: 16px;
+  }
+
+  .sheet-embed-head{
+    padding: 10px 10px 8px;
+  }
+
+  /* ✅ 카드 안에서 스크롤이 일어나게 만드는 핵심 */
+  .sheet-embed-frame{
+    padding: 10px;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ✅ iframe은 프레임(스크롤 컨테이너) 높이를 100% 채우기만 */
+  .sheet-embed-frame iframe{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    max-height: none;
+    border: 0;
+    display: block;
+  }
+}
+/* =========================
+   진행상황: 페이지 타이틀 숨김
+========================= */
+.page-status h1{
+  display: none;
+}
+
+/*===========*/
+
+
+
 /* 모바일 미세 조정 */
 @media (max-width: 480px){
   .page-status .status-card{
