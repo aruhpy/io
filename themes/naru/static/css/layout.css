@@ -65,7 +65,22 @@ img, svg, table { max-width: 100%; height: auto; }
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
+/* =========================
+   PC에서만: 프레임을 화면 정중앙(가로+세로)
+   - 모바일은 기존 @media(max-width:480px)에서 그대로
+========================= */
+@media (min-width: 481px){
+  body{
+    min-height: 100vh;
+    display: grid;
+    place-items: center; /* 가로+세로 중앙 */
+  }
 
+  /* body가 grid로 중앙정렬 해주니까 banner-box의 auto margin은 필요 없음(정리용) */
+  .banner-box{
+    margin: 0;
+  }
+}
 /* =========================
    프레임 안 콘텐츠 공통
 ========================= */
@@ -135,11 +150,11 @@ img, svg, table { max-width: 100%; height: auto; }
 }
 
 .menu-image-wrap {
-  margin-top: 20px;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 10px;
   width: 100%;
 }
 
@@ -170,11 +185,18 @@ body.page-type-index .page-body{
 ========================= */
 a.back-home{
   position: absolute;
-  top: 34px;                 /* PC 위치(원하면 숫자만 조절) */
+  top: 34px;                 /* PC 위치 */
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
-  display: block;
+
+  /* ✅ 터치영역(라인박스) 커지는 현상 방지 */
+  display: inline-block;
+  width: auto;
+  height: auto;
+  line-height: 0;
+  font-size: 0;
+
   background: transparent;
   border: none;
   outline: none;
@@ -190,6 +212,8 @@ a.back-home img{
   display: block;
   image-rendering: pixelated;
 }
+
+
 /* =========================================================
    MOBILE (480px 이하)
 ========================================================= */
@@ -200,21 +224,45 @@ a.back-home img{
     padding: 12px 20px;
   }
 
+  /* ✅ 모바일 홈: 화면 기준으로 "덩어리 통째" 중앙 정렬 */
+  body.is-home{
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  body.is-home .banner-box{
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
   /* 1) 모바일 홈: 프레임 숨김 유지 */
   body.is-home .lace-frame--pc,
   body.is-home .lace-frame--mobile{
     display: none !important;
   }
 
-  /* 홈 콘텐츠 위쪽부터 */
+  /* ✅ 모바일 홈: absolute 해제 → body flex 중앙정렬에 맡김 */
   body.is-home .banner-content.is-home{
-    top: 10px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   body.is-home .banner-main-wrap{
-    margin-top: 40px;
+    margin-top: 0px;
     margin-bottom: 10px;
     width: 339px;
     max-width: 90vw;
@@ -230,6 +278,8 @@ a.back-home img{
   body.is-page .banner-box{
     max-width: 900px !important;
     aspect-ratio: 900 / 1650 !important;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   body.is-page .lace-frame--pc{ display: none !important; }
@@ -238,43 +288,49 @@ a.back-home img{
     object-fit: contain !important;
   }
 
-  /* 3) 모바일 페이지 공통(폰트/여백/프레임 중앙 정렬)
-     - 중복 body.is-page 블록을 "하나"로 합쳐서 충돌/헷갈림 제거
-     - 키 큰 폰에서도 중앙으로 보이도록: padding은 자동(clamp), 프레임은 margin auto
-  */
+  /* ✅ 중요: 프레임 위치 흔드는 flex 중앙정렬 금지 */
+     /* ✅ 모바일 페이지 공통: 프레임을 화면 중앙에 두기(정상 상태 복귀) */
   body.is-page{
-    /* 폰트 */
     font-size: 14px;
     line-height: 1.45;
 
-    /* ✅ 화면이 길수록 위/아래 여백을 조금 더(작은 폰은 최소값 유지) */
     padding-top: calc(clamp(6px, 3vh, 24px) + env(safe-area-inset-top));
     padding-right: 20px;
     padding-bottom: calc(clamp(6px, 3vh, 24px) + env(safe-area-inset-bottom));
     padding-left: 20px;
 
-    /* ✅ iOS 뷰포트 단위 대응 + 중앙정렬 기반 */
     min-height: 100vh;
     min-height: 100svh;
     min-height: 100dvh;
 
+    /* ✅ 이게 “오른쪽(정상)” 배치의 핵심 */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* 프레임을 화면 가운데로 */
+    justify-content: center;  /* 세로 중앙 */
+    align-items: center;      /* 가로 중앙 */
   }
 
-  /* ✅ 프레임(배너박스) 자체를 "진짜 중앙"으로 고정 */
+  /* ✅ 프레임(배너박스)을 화면 가운데로 */
   body.is-page .banner-box{
-    margin-top: auto;
-    margin-bottom: auto;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
     flex: 0 0 auto;
   }
 
-  /* 4) 모바일 홈버튼 더 위(프레임 안 상단 중앙) */
+
+
+  /* 4) 모바일 홈버튼 기본(페이지 공통) */
   body.is-page a.back-home{
     top: 8px !important;
+  }
+
+  /* ✅ 모바일 + 타입정리(page-type-index)에서만 "터치영역 줄이기" */
+  body.page-type-index a.back-home{
+    width: 120px;        /* 클릭 영역 = 이미지 폭 */
+    overflow: hidden;    /* 혹시 커지면 잘라냄 */
   }
 
   /* 5) 모바일: 홈버튼/프레임/첫 컨텐츠 간격 “전 페이지 동일” */
@@ -299,4 +355,3 @@ a.back-home img{
   }
 
 } /* ✅ MOBILE @media 닫기 */
-

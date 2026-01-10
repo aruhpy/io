@@ -36,54 +36,74 @@
 /* =========================
    공지: 필독 박스 (리본 타이틀 바)
 ========================= */
-.notice-important {
+.notice-important{
   width: 100%;
   max-width: 520px;
-  margin: 0px auto 20px;     /* ✅ 유지 */
-  padding: 14px 16px;        /* ✅ 유지 */
+  margin: 0 auto 12px;
+
+  /* ✅ 세로 두께 줄이기(PC 기본) */
+  padding: 10px 12px;
+
   border-radius: 14px;
   background: #fff9fc;
   border: 1px solid #ffb7d6;
+
   text-align: center;
-}
-  width: 100%;
-  max-width: 360px;
   box-sizing: border-box;
 }
-  /* ✅ 한 줄(아이콘+텍스트) 자체를 가운데로 */
-  display: inline-grid;
-  grid-template-columns: 18px 1fr;
-  gap: 6px;
-  align-items: start;
 
-  width: min(360px, 100%);
-  text-align: left;
-
-  padding: 4px 2px;
-  box-sizing: border-box;
+/* ✅ 제목(필독 안내) 위치/간격 고정 */
+.notice-important > strong{
+  display: block;
+  margin: 0 0 6px;      /* ✅ 제목-문장 간격 줄임 */
+  line-height: 1.2;
 }
-/* =========================
-========================= */
-/* (선택) 만약 너가 나중에 p로 감싸면 이게 더 정확히 먹음 */
+
+/* ✅ 문장 래퍼(p) — 한글 한 글자씩 세로로 떨어지는 현상 방지 */
 .notice-important .notice-important-text{
-  margin: 0;
-  font-size: 13px;     /* ✅ PC/기본 글씨 크기 */
-  line-height: 1.3;    /* ✅ 줄간격(행간) */
+  margin: 0;            /* ✅ 불필요한 위/아래 여백 제거 */
+  padding: 0;
+  line-height: 1.35;
+
+  /* ✅ 자연 줄바꿈 */
+  white-space: normal;
+  word-break: keep-all;
+
+  /* ✅ 폭 제한(너가 원하던 느낌 유지) */
+  width: min(360px, 100%);
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* ✅ 핑크 문장 색 복구 */
 .notice-important .em-pink{
-  font-size: 13px;     /* ✅ span.em-pink도 같이 축소 */
-  line-height: 1.3;
+  color: #ffb0cc;       /* ✅ 네가 말한 그 계열 */
+  font-weight: 800;
+  font-size: 11px;      /* ✅ 박스 두께 얇게 보이게 */
+  line-height: 1.0;
 }
 
-/* ✅ 공지 아코디언 본문에서만 핑크/두께 복구 */
+/* ✅ 공지 아코디언 본문(다른 곳)에서 쓰는 em-pink는 기존 유지 */
 .notice-body .em-pink{
   color: #ff9ec7;
   font-weight: 800;
 }
 
-/* 모바일 전용 줄바꿈(권장: <br class="mobile-br">로 쓰기) */
-.mobile-br { display: none; }
+/* ✅ 모바일에서만 더 얇게 */
+@media (max-width: 480px){
+  .notice-important{
+    padding: 8px 10px;  /* ✅ 모바일 세로 두께 더 줄임 */
+    margin: 0 auto 12px;
+  }
+
+  .notice-important > strong{
+    margin-bottom: 5px; /* ✅ 제목-문장 간격 더 줄임 */
+  }
+
+  .notice-important .em-pink{
+    font-size: 10.5px;  /* ✅ 살짝만 더 얇게 */
+  }
+}
 
 /* =========================
    공지: 아코디언
@@ -152,13 +172,18 @@ background-color: #fff;
 body.page-type-index .type-chipbar{
   width: 100%;
   max-width: 520px;
-  margin: 0 auto 12px;
+  margin: 10px auto;
+
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
+  gap: 8px;
+
+  justify-content: flex-start; /* ✅ 왼쪽 정렬 */
+  align-items: center;
+
   box-sizing: border-box;
 }
+
 
 body.page-type-index .type-chip{
   appearance: none;
@@ -168,14 +193,14 @@ body.page-type-index .type-chip{
   align-items: center;
   justify-content: center;
 
-  padding: 5px 10px;
+  padding: 8px 12px;
   border-radius: 999px;
 
   background: #fff;
   border: 1px dashed #ffb7d6; /* ✅ 더 연한 핑크 */
   color: #ffb7d6;             /* ✅ 더 연한 핑크 */
 
-  font-size: 11px;            /* ✅ 살짝 축소 */
+  font-size: 12px;            /* ✅ 살짝 축소 */
   font-weight: 800;
   line-height: 1;
 
@@ -337,6 +362,56 @@ body.page-type-index .type-name{
 body.page-type-index h1,
 body.page-type-detail h1{
   display: none !important;
+}
+
+ /* ✅ 모바일 타입정리: 칩바/그리드/타입명 전체를 5px 아래로 */
+  body.page-type-index .page-body{
+    position: relative;
+    top: 10px;
+  }
+
+  body.page-type-index .type-chipbar{
+    gap: 4px;
+    margin: 0 auto 8px;
+  }
+
+  body.page-type-index .type-chip{
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .type-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .type-card{
+    gap: 2px;
+  }
+
+  .type-thumb{
+    padding: 6px;
+    border-radius: 1px;
+  }
+
+  body.page-type-index .type-thumb img{
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+    border-radius: 0px !important;
+  }
+
+  body.page-type-index .type-name{
+    font-family: "morris9", "Galmuri11", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    padding: 4px 0;
+    line-height: 1.0;
+    position: relative;
+    top: 2px;
+  }
 }
 /* =========================
    타입상세: 페이지 타이틀
@@ -619,10 +694,10 @@ body.page-type-detail .type-menu-right{
 body.page-type-detail .type-menu-sub{
   grid-column: 1 / -1;
   margin-top: -8px;
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.2;
   color: #e3c3cd;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.0px;
 }
 
 /* =========================
@@ -689,7 +764,19 @@ body.page-type-detail .type-formcolon{
 body.page-type-detail .type-formvalue{
   min-height: 1em;
 }
-
+/* 타입상세: 신청양식 hint */
+body.page-type-detail .type-formhint{
+  grid-column: 1 / -1;   /* ✅ 한 줄 전체를 차지(그리드여도 안전) */
+  margin-top: -5px;
+  font-size: 9px;
+  line-height: 1.35;
+  color: #ffb9ce;        /* 원하는 핑크 */
+  font-weight: 500;
+  opacity: 0.95;
+ text-align: left;   /* ✅ 추가 */
+  justify-self: start;/* ✅ (부모가 grid일 때) 왼쪽으로 붙임 */
+  padding-left: 5px;   /* ✅ 여기만 추가 */
+}
 /* ✅ 신청양식/주의사항 사이 점선 */
 body.page-type-detail .type-dots-divider{
   height: 10px;
@@ -754,7 +841,7 @@ body.page-type-detail .type-heart-text{
   }
 }
 
-/* =========================
+//* =========================
    타입상세: 불가주민(검색/칩)
 ========================= */
 body.page-type-detail .type-accordion{
@@ -771,15 +858,11 @@ body.page-type-detail .type-accordion-summary{
   transform: translateY(-2px);
   letter-spacing: 2px;
 
-  /* ✅ 텍스트(불가주민) + 오른쪽 삼각형 배치 */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
 
-  /* ✅ 네모칸 위/아래 간격 줄이기
-     기존: padding: 6px 2px;
-     변경: 위 -20px(6→2), 아래 -15px(6→3) */
   padding: 2px 2px 2px 2px;
 }
 
@@ -788,12 +871,12 @@ body.page-type-detail .type-accordion-summary::-webkit-details-marker{
   display: none;
 }
 
-/* 표준 마커(브라우저에 따라 적용) 제거 */
+/* 표준 마커 제거 */
 body.page-type-detail .type-accordion-summary::marker{
   content: "";
 }
 
-/* ✅ 우리가 쓸 삼각형(▾) */
+/* 우리가 쓸 삼각형(▾) */
 body.page-type-detail .type-accordion-summary::after{
   content: "▾";
   font-size: 14px;
@@ -805,7 +888,7 @@ body.page-type-detail .type-accordion-summary::after{
   transition: transform 180ms ease;
 }
 
-/* ✅ 열렸을 때 삼각형 방향 뒤집기 */
+/* 열렸을 때 삼각형 방향 뒤집기 */
 body.page-type-detail .type-accordion[open] > .type-accordion-summary::after{
   transform: translateY(1px) rotate(180deg);
 }
@@ -814,37 +897,81 @@ body.page-type-detail .type-ban-wrap{
   margin-top: 8px;
 }
 
+/* ✅ 검색줄(입력 + X버튼) */
+body.page-type-detail .type-ban-searchrow{
+  position: relative;
+  width: 100%;
+}
+
+/* ✅ 검색 input */
 body.page-type-detail .type-ban-search{
   width: 100%;
   box-sizing: border-box;
   border-radius: 12px;
   border: 1px solid #ffadcc;
-  padding: 8px 12px;
+  padding: 8px 34px 8px 12px; /* ✅ 오른쪽 X 버튼 공간 */
   font-size: 12px;
   outline: none;
 
-  /* ✅ 실제 입력 글자 색 */
   color: #eaa5bf;
   caret-color: #eaa5bf;
 
   background: #fff;
 }
 
-/* ✅ placeholder(“이름 검색…”) 색 */
+/* placeholder 색 */
 body.page-type-detail .type-ban-search::placeholder{
   color: #eaa5bf;
-  opacity: 1; /* 크롬에서 연해지는 거 방지 */
+  opacity: 1;
 }
 
-/* ✅ iOS/사파리에서 가끔 회색 고정되는 경우 방지 */
+/* iOS/사파리 회색 고정 방지(입력 글자) */
 body.page-type-detail .type-ban-search{
   -webkit-text-fill-color: #eaa5bf;
 }
 
 body.page-type-detail .type-ban-search:focus{
-  border-color: #f;
+  border-color: #ff9ec7; /* ✅ 기존 #f 오류 수정 */
 }
 
+/* ✅ X(지우기) 버튼 */
+body.page-type-detail .type-ban-clear{
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+
+  background: #fff7fb;
+  border: 1px dashed #ffb7d2;
+  color: #ffb7d2;
+
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body.page-type-detail .type-ban-clear:focus-visible{
+  outline: 2px solid #ffd0e1;
+  outline-offset: 2px;
+}
+
+/* ✅ 검색 결과 없음 문구 */
+body.page-type-detail .type-ban-empty{
+  margin: 8px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffb7d2;
+}
+
+/* 칩 래핑 */
 body.page-type-detail .type-ban-chips{
   margin-top: 10px;
   display: flex;
@@ -852,8 +979,8 @@ body.page-type-detail .type-ban-chips{
   gap: 6px;
 }
 
+/* ✅ 기본 스타일(표시/숨김과 무관) */
 body.page-type-detail .type-ban-chip{
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 5px 10px;
@@ -864,6 +991,20 @@ body.page-type-detail .type-ban-chip{
   font-size: 9px;
   font-weight: 600;
 }
+
+/* ✅ hidden 아닐 때만 보이게(= JS 필터가 제대로 먹음) */
+body.page-type-detail .type-ban-chip:not([hidden]){
+  display: inline-flex;
+}
+
+
+/* ✅ hidden 아닐 때만 보이게(= JS 필터가 제대로 먹음) */
+body.page-type-detail .type-ban-chip:not([hidden]){
+  display: inline-flex;
+}
+
+
+
 /*--------------*/
 
 

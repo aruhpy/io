@@ -5,8 +5,8 @@
   <h1 class="type-page-title">{{ .Title }}</h1>
 
   <!-- ✅ 샘플 슬라이더 -->
-{{ $imgs := .Resources.Match "img/*" }}
-{{ if gt (len $imgs) 0 }}
+  {{ $imgs := .Resources.Match "img/*" }}
+  {{ if gt (len $imgs) 0 }}
   <section class="type-sample">
     <div class="type-gallery-slider" id="typeGallery">
       {{ range $imgs }}
@@ -56,16 +56,20 @@
     <div class="type-combo-inner">
 
       {{ with .Params.form }}
-      <div class="type-formlist">
-        {{ range . }}
-        <div class="type-formrow">
-          <div class="type-formlabel">{{ .label }}</div>
-          <div class="type-formcolon">:</div>
-          <div class="type-formvalue"></div>
-        </div>
-        {{ end }}
-      </div>
-      {{ end }}
+   <div class="type-formlist">
+  {{ range . }}
+  <div class="type-formrow">
+    <div class="type-formlabel">{{ .label }}</div>
+    <div class="type-formcolon">:</div>
+    <div class="type-formvalue"></div>
+
+    {{ with .hint }}
+    <div class="type-formhint">{{ . }}</div>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+{{ end }}
 
       <div class="type-dots-divider" aria-hidden="true"></div>
 
@@ -84,66 +88,149 @@
   </section>
 
   <!-- ✅ 불가 주민(검색/칩) — 신청양식 박스 밖(별도), 프레임 안 -->
-{{ with .Params.ban_residents }}
-<section class="type-box type-ban">
-  <details class="type-accordion">
-    <summary class="type-accordion-summary">불가주민</summary>
+  {{ with .Params.ban_residents }}
+  <section class="type-box type-ban">
+    <details class="type-accordion">
+      <summary class="type-accordion-summary">불가주민</summary>
 
-    <div class="type-ban-wrap">
-      <input class="type-ban-search" type="text" placeholder="이름 검색..." />
+      <div class="type-ban-wrap">
+        <div class="type-ban-searchrow">
+          <input
+            class="type-ban-search"
+            type="text"
+            placeholder="이름 검색..."
+            autocomplete="off"
+            inputmode="search"
+          />
+          <button
+            class="type-ban-clear"
+            type="button"
+            aria-label="검색어 지우기"
+            hidden
+          >×</button>
+        </div>
 
-      <div class="type-ban-chips">
-        {{ range . }}
-        <button class="type-ban-chip" type="button">{{ . }}</button>
-        {{ end }}
+        <p class="type-ban-empty" hidden>해당 주민 없음</p>
+
+        <div class="type-ban-chips">
+          {{ range . }}
+          <button class="type-ban-chip" type="button" data-name="{{ . }}">{{ . }}</button>
+          {{ end }}
+        </div>
       </div>
-    </div>
-  </details>
-</section>
-{{ end }}
+    </details>
+  </section>
+  {{ end }}
 
 </main>
 
 <script>
 (function(){
-  // 라이트박스
-  const lb = document.getElementById('typeLightbox');
-  const lbImg = document.getElementById('typeLightboxImg');
-  const gallery = document.getElementById('typeGallery');
+  /* =========================================
+     불가주민 검색 + X 버튼
+     - 섹션이 없으면 조용히 종료
+  ========================================= */
+  const banWrap = document.querySelector(".type-ban-wrap");
+  if (banWrap) {
+    const input = banWrap.querySelector(".type-ban-search");
+    const clearBtn = banWrap.querySelector(".type-ban-clear");
+    const chipsWrap = banWrap.querySelector(".type-ban-chips");
+    const emptyMsg = banWrap.querySelector(".type-ban-empty");
 
-  if(gallery && lb && lbImg){
-  if(lb.parentElement !== document.body){
-  document.body.appendChild(lb);
-}
-       gallery.addEventListener('click', (e) => {
-      const btn = e.target.closest('.type-gallery-open');
-      if(!btn) return;
-      const src = btn.getAttribute('data-src');
-      if(!src) return;
+    if (input && clearBtn && chipsWrap && emptyMsg) {
+      const chips = Array.from(chipsWrap.querySelectorAll(".type-ban-chip"));
+
+      function norm(s) {
+        return (s || "").toString().replace(/\s+/g, "").toLowerCase();
+      }
+
+      function applyFilter() {
+        const raw = input.value || "";
+        const q = norm(raw);
+
+        // X 버튼 표시/숨김
+        clearBtn.hidden = raw.trim().length === 0;
+
+        let visible = 0;
+        for (const chip of chips) {
+          const name = norm(chip.getAttribute("data-name") || chip.textContent);
+          const match = q === "" || name.includes(q);
+          chip.hidden = !match;
+          if (match) visible++;
+        }
+
+        // 검색어가 있고 결과가 0이면 안내 표시
+        emptyMsg.hidden = !(q !== "" && visible === 0);
+      }
+
+      function clearSearch() {
+        input.value = "";
+        applyFilter();
+        input.focus();
+      }
+
+      input.addEventListener("input", applyFilter);
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") clearSearch();
+      });
+      clearBtn.addEventListener("click", clearSearch);
+
+      // (선택) 칩 클릭하면 그 이름으로 검색어 채우기
+      for (const chip of chips) {
+        chip.addEventListener("click", function () {
+          input.value = (chip.textContent || "").trim();
+          applyFilter();
+          input.focus();
+        });
+      }
+
+      // 초기 상태 적용
+      applyFilter();
+    }
+  }
+
+  /* =========================================
+     라이트박스
+  ========================================= */
+  const lb = document.getElementById("typeLightbox");
+  const lbImg = document.getElementById("typeLightboxImg");
+  const gallery = document.getElementById("typeGallery");
+
+  if (gallery && lb && lbImg) {
+    if (lb.parentElement !== document.body) {
+      document.body.appendChild(lb);
+    }
+
+    gallery.addEventListener("click", (e) => {
+      const btn = e.target.closest(".type-gallery-open");
+      if (!btn) return;
+      const src = btn.getAttribute("data-src");
+      if (!src) return;
 
       lbImg.src = src;
-      lb.classList.add('is-open');
-      lb.setAttribute('aria-hidden','false');
+      lb.classList.add("is-open");
+      lb.setAttribute("aria-hidden", "false");
     });
 
-        lb.addEventListener('click', (e) => {
-      const closeBtn = e.target.closest('[data-close=\"1\"]');
-      if(!(closeBtn || e.target === lb)) return;
+    lb.addEventListener("click", (e) => {
+      const closeBtn = e.target.closest('[data-close="1"]');
+      if (!(closeBtn || e.target === lb)) return;
 
-      lb.classList.remove('is-open');
-      lb.setAttribute('aria-hidden','true');
-      lbImg.removeAttribute('src');
+      lb.classList.remove("is-open");
+      lb.setAttribute("aria-hidden", "true");
+      lbImg.removeAttribute("src");
     });
 
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape' && lb.classList.contains('is-open')){
-        lb.classList.remove('is-open');
-        lb.setAttribute('aria-hidden','true');
-        lbImg.removeAttribute('src');
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lb.classList.contains("is-open")) {
+        lb.classList.remove("is-open");
+        lb.setAttribute("aria-hidden", "true");
+        lbImg.removeAttribute("src");
       }
     });
   }
 })();
 </script>
+
 {{ end }}
 

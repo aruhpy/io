@@ -17,37 +17,22 @@ bodyClass: "is-page page-type-index"
 <!-- ✅ data-filter 값에 따라 CSS가 카드 숨김 처리 -->
 <div class="type-grid" data-filter="all">
 
-  <!-- 핫듀 = 마감선 -->
-  <a class="type-card" href="ha/" data-cats="line">
-    <div class="type-thumb">
-      <img src="thumb_ha.png" alt="핫듀핫듀 타입" loading="lazy">
-    </div>
-    <div class="type-name">핫듀핫듀 타입</div>
-  </a>
 
-  <!-- 몽글 = 마감선 -->
-  <a class="type-card" href="mong/" data-cats="line">
-    <div class="type-thumb">
-      <img src="thumb_mong.png" alt="몽글망글 타입" loading="lazy">
-    </div>
-    <div class="type-name">몽글망글 타입</div>
-  </a>
+<!-- 겨우르 = SD -->
+<a class="type-card" href="wi/" data-cats="sd">
+  <div class="type-thumb">
+    <img src="thumb_wi.png" alt="겨우르 타입" loading="lazy">
+  </div>
+  <div class="type-name">겨우르 타입</div>
+</a>
 
-  <!-- 무지개 = 마감선 + 도트 -->
-  <a class="type-card" href="mu/" data-cats="line dot">
-    <div class="type-thumb">
-      <img src="thumb_mu.png" alt="무지개구름 타입" loading="lazy">
-    </div>
-    <div class="type-name">무지개구름 타입</div>
-  </a>
-
-  <!-- 패치워크 = 도트 -->
-  <a class="type-card" href="pa/" data-cats="dot">
-    <div class="type-thumb">
-      <img src="thumb_pa.png" alt="패치워크 타입" loading="lazy">
-    </div>
-    <div class="type-name">패치워크 타입</div>
-  </a>
+<!-- 멜로 텐시 = SD + line -->
+<a class="type-card" href="me/" data-cats="sd line">
+  <div class="type-thumb">
+    <img src="thumb_me.png" alt="멜로 텐시 타입" loading="lazy">
+  </div>
+  <div class="type-name">멜로 텐시 타입</div>
+</a>
 
   <!-- 보들 = SD -->
   <a class="type-card" href="bo/" data-cats="sd">
@@ -56,6 +41,39 @@ bodyClass: "is-page page-type-index"
     </div>
     <div class="type-name">보들 타입</div>
   </a>
+
+  <!-- 핫듀 = 마감선 -->
+  <a class="type-card" href="ha/" data-cats="line">
+    <div class="type-thumb">
+      <img src="thumb_ha.png" alt="핫듀핫듀 타입" loading="lazy">
+    </div>
+    <div class="type-name">핫듀핫듀 타입</div>
+  </a>
+ 
+  <!-- 패치워크 = 도트 -->
+  <a class="type-card" href="pa/" data-cats="dot">
+    <div class="type-thumb">
+      <img src="thumb_pa.png" alt="패치워크 타입" loading="lazy">
+    </div>
+    <div class="type-name">패치워크 타입</div>
+  </a>
+
+ <!-- 무지개 = 마감선 + 도트 -->
+  <a class="type-card" href="mu/" data-cats="line dot">
+    <div class="type-thumb">
+      <img src="thumb_mu.png" alt="무지개구름 타입" loading="lazy">
+    </div>
+    <div class="type-name">무지개구름 타입</div>
+  </a>
+
+ <!-- 몽글 = 마감선 -->
+  <a class="type-card" href="mong/" data-cats="line">
+    <div class="type-thumb">
+      <img src="thumb_mong.png" alt="몽글망글 타입" loading="lazy">
+    </div>
+    <div class="type-name">몽글망글 타입</div>
+  </a>
+
 
 </div>
 
