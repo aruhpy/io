@@ -4,8 +4,12 @@
   <!-- ✅ 페이지 타이틀 -->
   <h1 class="type-page-title">{{ .Title }}</h1>
 
-  <!-- ✅ 샘플 슬라이더 -->
-  {{ $imgs := .Resources.Match "img/*" }}
+  <!-- ✅ 샘플 슬라이더 (webp 우선, 없으면 기존 확장자) -->
+  {{ $imgs := .Resources.Match "img/*.webp" }}
+  {{ if eq (len $imgs) 0 }}
+    {{ $imgs = .Resources.Match "img/*" }}
+  {{ end }}
+
   {{ if gt (len $imgs) 0 }}
   <section class="type-sample">
     <div class="type-gallery-slider" id="typeGallery">
@@ -29,6 +33,7 @@
     </div>
   </div>
   {{ end }}
+
 
   <!-- ✅ 가격 메뉴 -->
   {{ with .Params.price }}

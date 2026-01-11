@@ -1,6 +1,6 @@
 baseURL = "https://aruhpy.github.io/io/"
 languageCode = "ko-kr"
-title = "나루"
+title = "아루"
 theme = "naru"
 
 canonifyURLs = false
