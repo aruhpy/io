@@ -15,6 +15,15 @@
         <a href="{{ "" | relURL }}" class="back-home" aria-label="홈으로 돌아가기">
           <img src="{{ "home.svg" | relURL }}" alt="홈으로" />
         </a>
+<button
+  type="button"
+  class="back-prev"
+  aria-label="뒤로가기"
+  onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href='{{ "/" | relURL }}'; }"
+>
+  ←
+</button>
+
       {{ end }}
 
       <!-- PC 프레임 -->
