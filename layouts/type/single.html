@@ -34,6 +34,19 @@
   </div>
   {{ end }}
 
+  <!-- ✅ (mu 등) 가격박스 위 단일 이미지 -->
+  {{ with .Params.form_top_image }}
+    {{ $img := $.Resources.GetMatch . }}
+    {{ if $img }}
+      <section class="type-form-top-image" aria-label="안내 이미지">
+        <img src="{{ $img.RelPermalink }}" alt="{{ $.Params.form_top_image_alt | default "안내 이미지" }}" loading="lazy">
+      </section>
+    {{ else }}
+      <section class="type-form-top-image" aria-label="안내 이미지">
+        <img src="{{ . | relURL }}" alt="{{ $.Params.form_top_image_alt | default "안내 이미지" }}" loading="lazy">
+      </section>
+    {{ end }}
+  {{ end }}
 
   <!-- ✅ 가격 메뉴 -->
   {{ with .Params.price }}
