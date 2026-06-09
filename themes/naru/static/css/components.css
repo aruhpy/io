@@ -184,6 +184,19 @@ body.page-type-index .type-chipbar{
   box-sizing: border-box;
 }
 
+/* ✅ 타입 상세: 가격박스 위 단일 이미지 */
+.type-form-top-image{
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 14px;
+}
+
+.type-form-top-image img{
+  display: block;
+  width: 100%;
+  max-width: 360px; /* ✅ 여기 숫자 줄이면 더 작아짐 (320~420 추천) */
+  height: auto;
+}
 
 body.page-type-index .type-chip{
   appearance: none;

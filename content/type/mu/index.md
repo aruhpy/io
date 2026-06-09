@@ -4,6 +4,9 @@ title: "무지개구름 타입"
 resident_mode: "has"
 duplicate_rule: "disallow"
 
+form_top_image: "img/eye_sample.png"
+form_top_image_alt: "눈 샘플 안내"
+
 price:
   rows:
     - label: "기본 (1인)"

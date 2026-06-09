@@ -17,7 +17,7 @@ title:
 
   <h3 class="notice-h3"><span class="tag-pink">1. 마감 관련</span></h3>
   <ul class="notice-list">
-    <li><span class="em-pink">빠른 마감(3일 이내): +30% 추가금</span></li>
+    <li><span class="em-pink">빠른 마감(7일 이내): +30% 추가금</span></li>
     <li>마감 기한: 결제일 기준 최대 5주 <span class="muted"><br>(마감기한은 거의 채우는 편입니다.)</span></li>
   </ul>
 
