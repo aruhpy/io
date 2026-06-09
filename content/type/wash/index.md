@@ -7,7 +7,7 @@ duplicate_notice: "헤어밴드랑 잠옷이 고정됩니다!"
 
 price:
   rows:
-    - label: "기본 (1인 + 주민 또는 크리쳐)"
+    - label: "기본 1인"
       value: "2.2"
     - label: "추가금"
       value: "화려캐 +0.1 ~ +0.5"
