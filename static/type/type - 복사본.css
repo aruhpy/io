@@ -1,0 +1,600 @@
+.type-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.type-card{
+  display: block;
+  text-decoration: none;
+}
+
+.type-card img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.type-name{
+  margin-top: 8px;
+}
+
+/* 불가 주민 칩 스타일 */
+.chip-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chip{
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #FFE3EC;
+  border: 1px solid rgba(0,0,0,0.06);
+  color: rgba(0,0,0,0.75);
+  font-size: 14px;
+  line-height: 1;
+}
+/* ===== 핑크 스타일 (스크린샷 느낌) ===== */
+.type-style{
+  --pink: #ff6b9a;
+  --pink-bg: #ffe3ec;
+  --pink-border: #ffd0df;
+  --text: #666;
+  --muted: #8a8a8a;
+}
+
+/* 알약(칩) 제목 */
+.type-style .pill-title{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--pink-bg);
+  color: var(--pink);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* 점점 구분선 */
+.type-style .dot-divider{
+  height: 10px;
+  margin: 18px 0 22px;
+  background-image: radial-gradient(var(--pink-border) 2px, transparent 2.5px);
+  background-size: 22px 10px;
+  background-repeat: repeat-x;
+  background-position: left center;
+  opacity: .9;
+}
+
+/* 핑크 불릿 목록 */
+.type-style ul.pink-list{
+  list-style: none;
+  padding-left: 0;
+  margin: 12px 0 0;
+}
+.type-style ul.pink-list li{
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 10px;
+  margin: 10px 0;
+  color: var(--text);
+  font-size: 18px;
+}
+.type-style ul.pink-list li::before{
+  content: "•";
+  color: var(--pink);
+  font-size: 28px;
+  line-height: 16px;
+  transform: translateY(2px);
+}
+
+/* 강조 텍스트 */
+.type-style .pink{ color: var(--pink); font-weight: 800; }
+.type-style .bold{ font-weight: 800; }
+.type-style .muted{ color: var(--muted); }
+
+/* 신청양식 리스트 */
+.type-style ol.form-list{
+  margin: 12px 0 0;
+  padding-left: 22px;
+  color: var(--muted);
+  font-size: 20px;
+  font-weight: 700;
+}
+.type-style ol.form-list li{ margin: 10px 0; }
+
+/* 안내 네모 박스 */
+.type-style .notice-box{
+  margin-top: 26px;
+  padding: 18px 18px;
+  border: 2px solid var(--pink-border);
+  background: #fff;
+}
+.type-style .notice-title{
+  text-align: center;
+  color: var(--pink);
+  font-weight: 900;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.type-style .notice-text{
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: px;
+  text-align: center;
+}
+
+/* 기존 칩(불가 주민) - 너가 원한 배경색 */
+.type-style .chip-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.type-style .chip{
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #FFE3EC;       /* 여기! */
+  border: 1px solid rgba(0,0,0,0.06);
+  color: rgba(0,0,0,0.70);
+  font-size: 14px;
+  line-height: 1;
+}
+/* ===== 모바일에서 글씨 줄이기 (아이폰 기준) ===== */
+@media (max-width: 480px){
+
+  /* 페이지 제목(h1)도 같이 줄이기 (type 상세페이지에서만 적용됨) */
+  main > h1{
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .type-style .pill-title{
+    font-size: 18px;
+    padding: 8px 14px;
+    gap: 8px;
+  }
+
+  .type-style ul.pink-list li{
+    font-size: 15px;
+    gap: 8px;
+    margin: 8px 0;
+  }
+
+  .type-style ul.pink-list li::before{
+    font-size: 22px;
+    line-height: 14px;
+  }
+
+  .type-style ol.form-list{
+    font-size: 16px;
+  }
+
+  .type-style .notice-title{
+    font-size: 16px;
+  }
+
+  .type-style .notice-text{
+    font-size: 13px;
+  }
+
+  .type-style .chip{
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+
+  .type-style .dot-divider{
+    margin: 14px 0 18px;
+  }
+}
+/* ===== 전체 글씨 작게 (PC/모바일 공통) : override ===== */
+.type-style{
+  font-size: 15px;       /* 전체 기본 글씨 크기 */
+  line-height: 1.6;
+}
+
+/* 페이지 큰 제목(핫듀핫듀 타입) */
+main > h1{
+  font-size: 34px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+/* 알약 제목(핫듀핫듀 마감선 / 신청 양식 등) */
+.type-style .pill-title{
+  font-size: 18px;
+  padding: 8px 14px;
+  gap: 8px;
+}
+
+/* 핑크 불릿 목록 */
+.type-style ul.pink-list li{
+  font-size: 15px;
+  margin: 8px 0;
+  gap: 8px;
+}
+.type-style ul.pink-list li::before{
+  font-size: 22px;
+  line-height: 14px;
+}
+
+/* 신청양식 숫자 리스트 */
+.type-style ol.form-list{
+  font-size: 16px;
+}
+
+/* 안내 박스 */
+.type-style .notice-title{
+  font-size: 16px;
+}
+.type-style .notice-text{
+  font-size: 13.5px;
+}
+
+/* 칩 */
+.type-style .chip{
+  font-size: 12px;
+  padding: 7px 10px;
+}
+
+/* 점점 구분선 여백도 살짝 줄이기 */
+.type-style .dot-divider{
+  margin: 14px 0 18px;
+}
+
+/* ===== 모바일에서는 한 번 더 줄이기 ===== */
+@media (max-width: 480px){
+  .type-style{ font-size: 14px; }
+
+  main > h1{
+    font-size: 26px;
+  }
+
+  .type-style .pill-title{
+    font-size: 16px;
+    padding: 7px 12px;
+  }
+
+  .type-style ul.pink-list li{
+    font-size: 14px;
+  }
+
+  .type-style ol.form-list{
+    font-size: 15px;
+  }
+
+  .type-style .notice-text{
+    font-size: 8.5px;
+  }
+}
+/* ===== 추가로 더 줄이기 + 제목 회색 ===== */
+
+/* 타입 상세페이지 제목(핫듀핫듀 타입) */
+main > h1{
+  font-size: 26px;                 /* 더 줄임 (원하면 26까지도 가능) */
+  color: rgba(0,0,0,0.55);         /* 회색 */
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+/* 전체 텍스트 2px 정도 더 줄이기 */
+.type-style{
+  font-size: 13px;                 /* 기존 15 -> 13 */
+}
+
+/* 알약 제목(마감선/신청양식 등) */
+.type-style .pill-title{
+  font-size: 16px;                 /* 18 -> 16 */
+  padding: 7px 12px;
+}
+
+/* 불릿 목록 */
+.type-style ul.pink-list li{
+  font-size: 13px;                 /* 15 -> 13 */
+}
+.type-style ul.pink-list li::before{
+  font-size: 20px;                 /* 22 -> 20 */
+}
+
+/* 신청 양식 리스트 */
+.type-style ol.form-list{
+  font-size: 14px;                 /* 16 -> 14 */
+}
+
+/* 안내 박스 */
+.type-style .notice-title{
+  font-size: 14px;                 /* 16 -> 14 */
+}
+.type-style .notice-text{
+  font-size: 8px;                 /* 13.5 -> 12 */
+}
+
+/* 칩 */
+.type-style .chip{
+  font-size: 8px;                 /* 12 -> 11 */
+  padding: 4px 5px;
+}@media (max-width: 480px){
+  .type-style .chip-wrap{
+    gap: 3px 3px;     
+  }
+}
+
+/* 모바일에서는 한 번 더 */
+/* ===== FINAL: 제목(h1) + 중복 안내 제목만 더 줄이기 (PC/모바일) ===== */
+
+/* PC 포함 기본 */
+main > h1{
+  font-size: 24px;           /* 핫듀핫듀 타입 더 작게 */
+  color: rgba(0,0,0,0.55);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* 중복 주민은… 제목 */
+.type-style .notice-title{
+  font-size: 13px;           /* 더 작게 */
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+/* 전체 글씨도 살짝(약 2px 느낌) 더 줄이기 */
+.type-style{
+  font-size: 12.5px;
+}
+
+/* 알약 제목도 살짝만 */
+.type-style .pill-title{
+  font-size: 15px;
+  padding: 7px 12px;
+}
+
+/* 불릿/양식/안내문도 같이 1~2px 다운 */
+.type-style ul.pink-list li{ font-size: 12.5px; }
+.type-style ol.form-list{ font-size: 13px; }
+.type-style .notice-text{ font-size: 11.5px; }
+
+/* 칩: 모바일에서만 아주 작게 + 간격 조절 */
+@media (max-width: 480px){
+  main > h1{ font-size: 14px; }
+
+  .type-style{ font-size: 14px; }
+  .type-style .pill-title{ font-size: 14px; }
+
+  .type-style .notice-title{ font-size: 8px; }
+
+  .type-style .chip-wrap{
+    gap: 3px 4px;     /* 세로 3, 가로 4 */
+  }
+  .type-style .chip{
+    font-size: 8px;
+    padding: 3px 6px; /* 위아래 3, 좌우 6 */
+    line-height: 1.1;
+  }
+}
+/* ===== 모바일에서 줄바꿈 줄이기 세트 ===== */
+.type-main{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+@media (max-width: 480px){
+  .type-main{ padding: 12px; }
+
+  .type-style{
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  .type-style ul.pink-list li{
+    grid-template-columns: 10px 1fr;
+    gap: 6px;
+    font-size: 12.5px;
+  }
+}
+/* ===== 전체 기준 크기 DOWN ===== */
+.type-style{
+  font-size: 12px;        /* 핵심: 전체 기준을 확 낮춤 */
+  line-height: 1.55;
+  color: #777;
+}
+
+/* 페이지 제목 (핫듀핫듀 타입) */
+main > h1{
+  font-size: 18px;        /* 한눈에 들어오는 크기 */
+  font-weight: 800;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 10px;
+}
+
+/* 알약 제목 (핫듀핫듀 마감선 / 신청 양식) */
+.type-style .pill-title{
+  font-size: 13px;
+  padding: 6px 12px;
+  gap: 6px;
+  font-weight: 800;
+}
+
+/* 불릿 목록 */
+.type-style ul.pink-list li{
+  font-size: 12px;
+  margin: 6px 0;
+  gap: 6px;
+}
+.type-style ul.pink-list li::before{
+  font-size: 16px;
+  line-height: 14px;
+}
+
+/* 점점 구분선 */
+.type-style .dot-divider{
+  margin: 12px 0 14px;
+  opacity: .7;
+}
+
+/* 신청 양식 (1. 주민 사진 첨부 …) */
+.type-style ol.form-list{
+  font-size: 12px;
+  font-weight: 600;
+}
+.type-style ol.form-list li{
+  margin: 6px 0;
+}
+
+/* 중복 안내 박스 */
+.type-style .notice-box{
+  margin-top: 18px;
+  padding: 14px;
+}
+
+/* 중복 주민은 받지 않는 타입입니다!! */
+.type-style .notice-title{
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+/* 중복 관련 설명 문단 */
+.type-style .notice-text{
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* 불가 주민 칩 */
+.type-style .chip{
+  font-size: 10px;
+  padding: 4px 7px;
+  line-height: 1.1;
+}
+.type-style .chip-wrap{
+  gap: 4px 5px;
+}
+
+/* ===== 모바일에서 살짝만 더 줄이기 ===== */
+@media (max-width: 480px){
+  .type-style{ font-size: 11px; }
+
+  main > h1{
+    font-size: 16px;
+  }
+
+  .type-style .pill-title{
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .type-style ul.pink-list li{
+    font-size: 11px;
+  }
+
+  .type-style .notice-title{
+    font-size: 11px;
+  }
+
+  .type-style .notice-text{
+    font-size: 10.5px;
+  }
+}
+/* ===== 모바일에서 더 작게 (아이폰 기준) ===== */
+@media (max-width: 480px){
+  .type-style{ font-size: 10.8px; line-height: 1.55; }
+
+  /* 알약 제목 */
+  .type-style .pill-title{
+    font-size: 11.5px;
+    padding: 5px 10px;
+  }
+
+  /* 불릿 */
+  .type-style ul.pink-list li{ font-size: 10.8px; }
+  .type-style ul.pink-list li::before{ font-size: 14px; }
+
+  /* 신청양식 */
+  .type-style ol.form-list{ font-size: 10.8px; }
+
+  /* 중복 안내 */
+  .type-style .notice-title{ font-size: 11px; }
+  .type-style .notice-text{ font-size: 10.2px; }
+
+  /* 칩 */
+  .type-style .chip{
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+  .type-style .chip-wrap{ gap: 3px 4px; }
+}
+
+/* ===== 네이버카페 모바일 느낌 ===== */
+@media (max-width: 480px){
+
+  /* 전체 본문 */
+  .type-style{
+    font-size: 10px;          /* ← 네카 모바일 체감 */
+    line-height: 1.5;
+  }
+
+  /* 페이지 제목 (핫듀핫듀 타입) */
+  main > h1{
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  /* 알약 제목 */
+  .type-style .pill-title{
+    font-size: 11px;
+    padding: 4px 9px;
+    gap: 5px;
+  }
+
+  /* 불릿 설명 */
+  .type-style ul.pink-list li{
+    font-size: 10px;
+    gap: 5px;
+    margin: 5px 0;
+  }
+  .type-style ul.pink-list li::before{
+    font-size: 13px;
+  }
+
+  /* 신청 양식 (1. 주민 사진 첨부…) */
+  .type-style ol.form-list{
+    font-size: 10px;
+  }
+  .type-style ol.form-list li{
+    margin: 4px 0;
+  }
+
+  /* 중복 안내 박스 */
+  .type-style .notice-title{
+    font-size: 10.5px;
+    margin-bottom: 4px;
+  }
+  .type-style .notice-text{
+    font-size: 9.5px;
+    line-height: 1.55;
+  }
+
+  /* 불가 주민 칩 */
+  .type-style .chip{
+    font-size: 8.5px;
+    padding: 3px 5px;
+  }
+  .type-style .chip-wrap{
+    gap: 3px 4px;
+  }
+
+  /* 점점 구분선 */
+  .type-style .dot-divider{
+    margin: 8px 0 10px;
+    opacity: .6;
+  }
+}

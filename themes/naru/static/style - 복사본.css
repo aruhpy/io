@@ -1,0 +1,10 @@
+/* =========================================================
+   style.css (ENTRY)
+   - 이 파일은 baseof.html에서 불러오는 "메인 진입점"이에요.
+   - 실제 스타일은 아래 3개 파일로 분리되어 있고,
+     여기서는 순서대로 import만 합니다.
+========================================================= */
+
+@import url("css/layout.css");
+@import url("css/components.css");
+@import url("css/progress.css");

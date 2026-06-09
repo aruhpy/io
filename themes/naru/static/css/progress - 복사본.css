@@ -1,0 +1,413 @@
+/* =========================================================
+   progress.css
+   - 진행상황(/status/) 전용 스타일
+   - 현재 레이아웃은 layout.css(공통)로 충분히 동작하며,
+     아래는 '진행상황 페이지를 예쁘게 만들 때' 쓸 수 있는 안전한 기본 세트.
+   - (기존 디자인을 건드리지 않도록, 해당 클래스가 있을 때만 적용)
+========================================================= */
+
+/* ✅ 권장: content/status/_index.md에 bodyClass를 추가하면 페이지 전용 스타일 관리가 쉬워요.
+   예) ---
+       title: "진행상황"
+       bodyClass: page-status
+       ---
+*/
+
+.page-status .status-wrap{
+  display: grid;
+  gap: 14px;
+}
+
+body.page-status .sheet-sub{
+  color: #ffcddf;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+}
+
+.page-status .status-card{
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  border: 1px solid rgba(255, 183, 213, .35);
+}
+
+.page-status .status-title{
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.page-status .status-meta{
+  font-size: 13px;
+  opacity: .75;
+  margin-bottom: 10px;
+}
+
+.page-status .status-list{
+  margin: 0;
+  padding-left: 18px;
+}
+
+.page-status .status-list li{
+  margin: 6px 0;
+}
+/* 신청타입(D열=4번째): ... 처리 안정화 */
+body.page-status .status-table td:nth-child(4){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* =========================
+   진행상황(gviz 테이블)
+========================= */
+body.page-status .status-table-wrap{
+  width: 100%;
+  border: 1px dashed #ff9ec7;
+  border-radius: 18px;
+  background:
+     radial-gradient(#ffe3ee 1.35px, transparent 1.35px) 0 0 / 14px 14px,
+  radial-gradient(#ffe3ee 1.35px, transparent 1.35px) 7px 7px / 14px 14px,
+  #ffffff;
+  overflow: auto;                 /* 모바일 가로 스크롤 */
+  -webkit-overflow-scrolling: touch;
+  padding: 12px;
+  box-sizing: border-box;
+  position: relative;
+
+  /* 카드 느낌 */
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  backdrop-filter: blur(2px);
+}
+
+body.page-status .status-loading,
+body.page-status .status-error{
+  font-size: 13px;
+  color: #ff82ae;
+  padding: 14px 10px;
+  text-align: center;
+  font-weight: 700;
+}
+
+body.page-status .status-table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 0;
+  table-layout: fixed;
+}
+
+/* 헤더 */
+body.page-status .status-table thead th{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  background: rgba(255,249,252,.92);
+  backdrop-filter: blur(6px);
+
+  color: #ff82ae;
+  font-weight: 500;
+  font-size: 12px;
+
+  padding: 8px 6px;
+  border-bottom: 1px solid #ffd0e1;
+  white-space: nowrap;
+
+  text-align: center;
+  vertical-align: middle;
+  box-shadow: 0 6px 14px rgba(0,0,0,.05);
+}
+
+/* 본문 셀 */
+body.page-status .status-table tbody td{
+  font-size: 12px;
+  padding: 7px 6px;
+  border-bottom: 1px solid #ffe3ee; /* ✅ 행 구분선 */
+  white-space: nowrap;
+
+  text-align: center;
+  vertical-align: middle;
+
+  color: #7f7f7f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 줄무늬(짝수행) */
+body.page-status .status-table tbody tr:nth-child(even){
+  background: rgba(255, 249, 252, .55);
+}
+
+/* PC hover */
+@media (min-width: 769px){
+  body.page-status .status-table tbody tr:hover{
+    background: #fff6fa;
+  }
+}
+
+/* 신청타입(D열=4번째): ... 안정화 */
+body.page-status .status-table td:nth-child(4){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 닉네임(C열=3번째)만 살짝 굵게 */
+body.page-status .status-table tbody td:nth-child(3){
+  font-weight: 800;
+}
+/* =========================
+   진행상황: 열 폭 강제(더 촘촘하게) - 7열(순번 + A~F)
+========================= */
+
+/* 공통 셀 패딩/정렬(촘촘) */
+body.page-status .status-table thead th,
+body.page-status .status-table tbody td{
+  padding: 4px 0px;       /* ✅ 좌우 0 유지 */
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;       /* ✅ fixed 레이아웃에서 필요 */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* (1) 순번 */
+body.page-status .status-table th:nth-child(1),
+body.page-status .status-table td:nth-child(1){
+  width: 20px;
+  color: #b8b8b8;
+  font-weight: 900;
+}
+
+/* (2) 신청날짜 (원래 1열) */
+body.page-status .status-table th:nth-child(2),
+body.page-status .status-table td:nth-child(2){
+  width: 50px;
+}
+
+/* (3) 플랫폼 (원래 2열) */
+body.page-status .status-table th:nth-child(3),
+body.page-status .status-table td:nth-child(3){
+  width: 38px;
+}
+
+/* (4) 닉네임 (원래 3열) */
+body.page-status .status-table th:nth-child(4),
+body.page-status .status-table td:nth-child(4){
+  width: 38px;
+}
+
+/* (5) 신청타입 (원래 4열) */
+body.page-status .status-table th:nth-child(5),
+body.page-status .status-table td:nth-child(5){
+  width: 60px;
+}
+
+/* (6) 진행상황 (원래 5열) */
+body.page-status .status-table th:nth-child(6),
+body.page-status .status-table td:nth-child(6){
+  width: 50px;
+}
+
+/* (7) 마감날짜 (원래 6열) */
+body.page-status .status-table th:nth-child(7),
+body.page-status .status-table td:nth-child(7){
+  width: 55px;
+}
+
+
+/*===========================*/
+
+body.page-status .status-table tbody tr:nth-child(even){
+  background: #fffdfd;
+}
+
+/* 닉네임(C열=3번째)만 살짝 굵게 */
+body.page-status .status-table tbody td:nth-child(3){
+  font-weight: 800;
+}
+
+/* =========================
+   진행상황: 상태 칩
+========================= */
+.page-status .status-chip{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 5px;
+  border-radius: 999px;
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px dashed #ff9ec7;
+  background: #fff9fc;
+  color: #ff5fa2;
+}
+
+/* 결제 완료 */
+.page-status .status-chip.is-paid{
+  background: #fff0f4;
+  border-color: #ffaccb;
+  color: #ffb7d4;
+}
+
+/* 결제 대기/입금 대기 */
+.page-status .status-chip.is-wait-pay{
+  background: #e5e5e5;
+  border-color: #b0b0b0;
+  color: #b7b7b7;
+}
+
+/* 작업 중/진행 중 */
+.page-status .status-chip.is-working{
+  background: #f3ebff;
+  border-color: #c9a2ff;
+  color: #d4aaff;
+}
+
+/* 완료/전달 완료 */
+.page-status .status-chip.is-done{
+  background: #ffdae7;
+  border-color: #ff8eb6;
+  color: #ff8eb6;
+}
+
+/* 대기 */
+.page-status .status-chip.is-wait{
+  background: #f7f7f7;
+  border-color: #d8d8d8;
+  color: #777;
+}
+
+/* 취소/환불 */
+.page-status .status-chip.is-cancel{
+  background: #fff1f1;
+  border-color: #ffb6b6;
+  color: #ff5b5b;
+}
+
+/* 기타 */
+.page-status .status-chip.is-etc{
+  background: #fff9fc;
+  border-color: #ffd0e1;
+  color: #ff7fb3;
+}
+/* =========================
+   진행상황: 플랫폼 칩
+========================= */
+.page-status .platform-chip{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 5px;
+  border-radius: 999px;
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px dashed #ffd0e1;
+  background: #fff;
+  color: #ff5fa2;
+}
+
+/* 카페: #e5ffe1 */
+.page-status .platform-chip.is-cafe{
+  background: #e5ffe1;
+  border-color: rgba(0,0,0,.12);
+  color: #8ac08f; /* ✅ 글씨색 */
+}
+
+/* 크레페: #f5e1ff */
+.page-status .platform-chip.is-crepe{
+  background: #f5e1ff;
+  border-color: rgba(0,0,0,.12);
+  color: #c094d5; /* ✅ 글씨색 */
+}
+
+/* 마감날짜: '빠마' 강조 */
+.page-status .deadline-bamma{
+  font-weight: 900;
+  color: #ff85ad;
+}
+
+/* 기타 */
+.page-status .platform-chip.is-etc{
+  background: #fff9fc;
+  border-color: #ffd0e1;
+  color: #ff7fb3;
+}
+/* =========================
+   PC에서만 칩 크기 조금 키우기
+========================= */
+@media (min-width: 769px){
+  .page-status .status-chip,
+  .page-status .platform-chip{
+    padding: 4px 8px;   /* ✅ PC에서만 살짝 넓게 */
+    font-size: 10px;    /* ✅ PC에서만 글씨 키움 */
+    font-weight: 900;
+  }
+}
+/* =========================
+   모바일: 헤더(맨 위 행) 더 슬림하게
+========================= */
+@media (max-width: 480px){
+  body.page-status .status-table thead th{
+    font-size: 10px;     /* ✅ 글자 줄이기 */
+    padding: 6px 4px;    /* ✅ 위아래/좌우 여백 줄이기 */
+  }
+}
+/* =========================
+   진행상황: 페이지 타이틀 숨김
+========================= */
+.page-status h1{
+  display: none;
+}
+/* =========================
+   모바일: 타입명 토스트
+========================= */
+.page-status .status-toast{
+  position: sticky;
+  bottom: 8px;
+  left: 0;
+  width: fit-content;
+  max-width: 92%;
+  margin: 10px auto 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px dashed #ff9ec7;
+  color: #ff5fa2;
+  font-weight: 900;
+  font-size: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+}
+
+.page-status .status-toast.is-show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (min-width: 769px){
+  /* PC에선 토스트 필요 없으니 숨김(원하면 지워도 됨) */
+  .page-status .status-toast{ display: none; }
+}
+/*===========*/
+
+
+
+/* 모바일 미세 조정 */
+@media (max-width: 480px){
+  .page-status .status-card{
+    border-radius: 14px;
+    padding: 12px;
+  }
+}

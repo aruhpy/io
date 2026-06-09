@@ -16,61 +16,63 @@ bodyClass: "is-page page-type-index"
 
 <!-- ✅ data-filter 값에 따라 CSS가 카드 숨김 처리 -->
 <div class="type-grid" data-filter="all">
-<!-- 버블버블 = 마감선 -->
-<a class="type-card" href="bubble/" data-cats="line">
+
+
+<!-- 겨우르 = SD -->
+<a class="type-card" href="wi/" data-cats="sd">
   <div class="type-thumb">
-    <img src="thumb_bubble.webp" alt="버블버블 타입" loading="lazy">
+    <img src="thumb_wi.webp" alt="겨우르 타입" loading="lazy">
   </div>
-  <div class="type-name">버블버블 타입</div>
+  <div class="type-name">겨우르 타입</div>
 </a>
 
-<!-- 러키크로바 = 마감선 -->
-<a class="type-card" href="clover/" data-cats="line">
-  <div class="type-thumb">
-    <img src="thumb_clover.webp" alt="러키크로바 타입" loading="lazy">
-  </div>
-  <div class="type-name">러키크로바 타입</div>
-</a>
-
-<!-- 방글방글 = 마감선 -->
-<a class="type-card" href="bangeul/" data-cats="line">
-  <div class="type-thumb">
-    <img src="thumb_bangeul.webp" alt="방글방글 타입" loading="lazy">
-  </div>
-  <div class="type-name">방글방글 타입</div>
-</a>
-
-<!-- 텐시멜로 = SD + 마감선 -->
+<!-- 멜로 텐시 = SD + line -->
 <a class="type-card" href="me/" data-cats="sd line">
   <div class="type-thumb">
-    <img src="thumb_me.webp" alt="텐시멜로 타입" loading="lazy">
+    <img src="thumb_me.webp" alt="멜로 텐시 타입" loading="lazy">
   </div>
-  <div class="type-name">텐시멜로 타입</div>
+  <div class="type-name">멜로 텐시 타입</div>
 </a>
 
-<!-- 세수하는 = SD -->
-<a class="type-card" href="wash/" data-cats="sd">
-  <div class="type-thumb">
-    <img src="thumb_wash.webp" alt="세수하는 타입" loading="lazy">
-  </div>
-  <div class="type-name">세수하는 타입</div>
-</a>
+  <!-- 보들 = SD -->
+  <a class="type-card" href="bo/" data-cats="sd">
+    <div class="type-thumb">
+      <img src="thumb_bo.webp" alt="보들 타입" loading="lazy">
+    </div>
+    <div class="type-name">보들 타입</div>
+  </a>
 
-<!-- 이치링고 = 마감선 + 도트 -->
-<a class="type-card" href="apple/" data-cats="line dot">
-  <div class="type-thumb">
-    <img src="thumb_apple.webp" alt="이치링고 타입" loading="lazy">
-  </div>
-  <div class="type-name">이치링고 타입</div>
-</a>
+  <!-- 핫듀 = 마감선 -->
+  <a class="type-card" href="ha/" data-cats="line">
+    <div class="type-thumb">
+      <img src="thumb_ha.webp" alt="핫듀핫듀 타입" loading="lazy">
+    </div>
+    <div class="type-name">핫듀핫듀 타입</div>
+  </a>
+ 
+  <!-- 패치워크 = 도트 -->
+  <a class="type-card" href="pa/" data-cats="dot">
+    <div class="type-thumb">
+      <img src="thumb_pa.webp" alt="패치워크 타입" loading="lazy">
+    </div>
+    <div class="type-name">패치워크 타입</div>
+  </a>
 
-<!-- 무지개 = 마감선 + 도트 -->
-<a class="type-card" href="mu/" data-cats="line dot">
-  <div class="type-thumb">
-    <img src="thumb_mu.webp" alt="무지개구름 타입" loading="lazy">
-  </div>
-  <div class="type-name">무지개구름 타입</div>
-</a>
+ <!-- 무지개 = 마감선 + 도트 -->
+  <a class="type-card" href="mu/" data-cats="line dot">
+    <div class="type-thumb">
+      <img src="thumb_mu.webp" alt="무지개구름 타입" loading="lazy">
+    </div>
+    <div class="type-name">무지개구름 타입</div>
+  </a>
+
+ <!-- 몽글 = 마감선 -->
+  <a class="type-card" href="mong/" data-cats="line">
+    <div class="type-thumb">
+      <img src="thumb_mong.webp" alt="몽글망글 타입" loading="lazy">
+    </div>
+    <div class="type-name">몽글망글 타입</div>
+  </a>
 
 
 </div>

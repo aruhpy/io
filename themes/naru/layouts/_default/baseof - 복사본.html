@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .Site.Title }}</title>
+    <link rel="stylesheet" href="{{ "style.css" | relURL }}" />
+  </head>
+
+ <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}{{ if eq .Section "type" }} {{ if .IsNode }}page-type-index{{ else }}page-type-detail{{ end }}{{ end }} {{ with .Params.bodyClass }}{{ . }}{{ end }}">
+
+
+    <div class="banner-box">
+      {{ if not .IsHome }}
+        <a href="{{ "" | relURL }}" class="back-home" aria-label="홈으로 돌아가기">
+          <img src="{{ "home.svg" | relURL }}" alt="홈으로" />
+        </a>
+<button
+  type="button"
+  class="back-prev"
+  aria-label="뒤로가기"
+  onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href='{{ "/" | relURL }}'; }"
+>
+  ←
+</button>
+
+      {{ end }}
+
+      <!-- PC 프레임 -->
+      <img
+        src="{{ "canvas_frame_v2.svg" | relURL }}"
+        class="lace-frame lace-frame--pc"
+        alt="레이스 프레임 (PC)"
+      />
+
+      <!-- 모바일 프레임 (900x1650) -->
+      <img
+        src="{{ "mobile_frame.svg" | relURL }}"
+        class="lace-frame lace-frame--mobile"
+        alt="레이스 프레임 (모바일)"
+      />
+
+      <div class="banner-content {{ if .IsHome }}is-home{{ else }}is-page{{ end }}">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </div>
+
+   <script>
+  (function () {
+    document.addEventListener('contextmenu', function (e) {
+      const img = e.target && e.target.closest && e.target.closest('img');
+      if (img) e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchstart', function (e) {
+      const img = e.target && e.target.closest && e.target.closest('img');
+      if (!img) return; // ✅ img가 아니면 아무것도 안 함 (에러 방지)
+
+      // ✅ 라이트박스/슬라이더는 예외 (클릭/스와이프 살아야 함)
+      if (img.closest('.type-lightbox')) return;
+      if (img.closest('.type-gallery-slider')) return;
+
+      // 레이스 프레임은 예외
+      if (img.classList.contains('lace-frame')) return;
+
+      // 링크/버튼 안 이미지는 예외(메뉴/홈버튼 살아야 함)
+      if (img.closest('a, button')) return;
+
+      // 그 외 이미지는 저장/롱탭 방지
+      e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('dragstart', function (e) {
+      const img = e.target && e.target.closest && e.target.closest('img');
+      if (img) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+
+
+  </body>
+</html>
+
+

@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <div class="banner-main-wrap">
+    <img src="{{ "pink.svg" | relURL }}" class="banner-main" alt="메인 배너" />
+  </div>
+
+  <div class="menu-image-wrap">
+    <a href="{{ "notice/" | relURL }}"><img src="{{ "menu1.svg" | relURL }}" alt="공지사항" /></a>
+    <a href="{{ "type/" | relURL }}"><img src="{{ "menu2.svg" | relURL }}" alt="타입" /></a>
+    <a href="{{ "status/" | relURL }}"><img src="{{ "menu3_v2.svg" | relURL }}" alt="진행상황" /></a>
+    <a href="https://crepe.cm/@aruu?source=header" target="_blank" rel="noopener noreferrer">
+  <img src="{{ "menu4.svg" | relURL }}" alt="크레페" />
+</a>
+
+  </div>
+{{ end }}

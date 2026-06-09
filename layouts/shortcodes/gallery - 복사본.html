@@ -1,0 +1,17 @@
+{{/* 사용법: {{< gallery >}}  또는  {{< gallery dir="img" >}} */}}
+
+{{ $dir := (.Get "dir") | default "img" }}
+{{ $pattern := printf "%s/*" $dir }}
+{{ $imgs := .Page.Resources.Match $pattern }}
+
+{{ if not $imgs }}
+  <p style="opacity:.7;">{{ $dir }}/ 폴더에 이미지가 없어요!</p>
+{{ else }}
+  <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;">
+    {{ range sort $imgs "Name" "asc" }}
+      <a href="{{ .RelPermalink }}">
+        <img src="{{ .RelPermalink }}" alt="" loading="lazy" style="width:100%; height:auto; border-radius: 12px;">
+      </a>
+    {{ end }}
+  </div>
+{{ end }}
